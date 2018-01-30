@@ -2,25 +2,35 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class RedirectIfAuthenticated
+use Closure;
+
+
+class AdministradorRedirect
 {
     /**
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
-     * @param  string|null  $guard
      * @return mixed
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard)->check()) {
-            return redirect('/admin/posts');
-        }
+        if (Auth::guard($guard)->check()) :
 
-        return $next($request);
+            if (Auth::user()->id_rol == 1) :
+
+                return $next($request);
+
+            else :
+
+                return redirect('login');
+
+            endif;
+
+
+        endif;
     }
 }

@@ -30,11 +30,13 @@ Route::get('/post', function () {
 /* Rutas de Autenticación */
 Auth::routes();
 
+/* Generar Password */
+Route::get('hash', 'AdministradorController@generarPassword');
 
 Route::group(['middleware' => ['administrador.redirect']], function () {
 
     /* Rutas de Posts */
-    Route::get('/admin/posts', 'AdministradorController@index');
+    Route::get('/admin/posts', 'AdministradorController@posts');
     Route::post('/admin/posts', 'AdministradorController@nuevoPost');
     Route::post('/admin/editar-posts', 'AdministradorController@editarPost');
     Route::post('/admin/eliminar-posts', 'AdministradorController@eliminarPost');
