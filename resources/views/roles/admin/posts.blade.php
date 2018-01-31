@@ -7,6 +7,22 @@
                 @include('layouts.admin.list-group', [ 'item' => $list_group_item ])
             </div>
             <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 mt-3">
+                @if (session('status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+                @endif
+                @if(count($errors))
+                    <div class="alert alert-danger">
+                        <strong>Oops!</strong> Al parecer no se han cumplido los siguientes criterios:
+                        <br/>
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 @if(count($posts) > 0)
                     <div class="table-responsive">
                         <table class="table table-striped">
@@ -60,7 +76,7 @@
                         <form action="{{ url('/admin/posts') }}" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="form-group">
-                                <label for="tipo">Subcategoria</label>
+                                <label for="subcategoria">Subcategoria</label>
                                 <select class="form-control" name="subcategoria">
                                     @foreach($subcategorias as $subcategoria)
                                         <option value="{{ $subcategoria->id_subcategoria }}">{{ $subcategoria->subcategoria }}</option>
@@ -119,6 +135,7 @@
                                     </div>
                                 @endif
                             </div>
+                            <button type="submit" class="btn btn-primary">Registrar</button>
                         </form>
                     @else
                         <h4 class="fm-7 text-center">

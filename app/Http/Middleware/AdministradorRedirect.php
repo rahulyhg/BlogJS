@@ -18,19 +18,22 @@ class AdministradorRedirect
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard)->check()) :
+        if ($guard) {
+            if (Auth::guard($guard)->check()) {
+                if (Auth::user()->id_rol == 1) {
 
-            if (Auth::user()->id_rol == 1) :
+                    return $next($request);
 
-                return $next($request);
+                } else {
 
-            else :
+                    return redirect('login');
 
-                return redirect('login');
+                }
+            }
+        } else {
 
-            endif;
+            return $next($request);
 
-
-        endif;
+        }
     }
 }

@@ -53,6 +53,9 @@ Route::group(['middleware' => ['administrador.redirect']], function () {
     Route::post('/admin/editar-subcategorias', 'AdministradorController@editarSubcategoria');
     Route::post('/admin/eliminar-subcategorias', 'AdministradorController@eliminarSubcategoria');
 
+    /* Rutas de Estadistica Agente */
+    Route::get('/admin/estadisticas', 'AdministradorController@estadisticas');
+
     /* Rutas del Newsletter */
     Route::get('admin/newsletter', 'AdministradorController@newsletter');
 
