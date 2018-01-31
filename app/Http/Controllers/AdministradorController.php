@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 use App\Post;
+use App\Subcategoria;
 
 class AdministradorController extends Controller
 {
@@ -14,6 +15,7 @@ class AdministradorController extends Controller
         return view('roles.admin.posts', [
             'list_group_item' => 1,
             'posts'           => Post::where('activo', 1)->get(),
+            'subcategorias'   => Subcategoria::where('activo', 1)->get(),
         ]);
     }
 
