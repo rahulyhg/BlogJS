@@ -32,7 +32,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link" href="#">Categorias</a>
+                    @foreach($categorias as $categoria)
+                    <a class="nav-item nav-link" href="#">{{ $categoria->categoria }}</a>
+                    @endforeach
                 </div>
             </div>
         </nav>
