@@ -72,9 +72,46 @@ class AdministradorController extends Controller
         return redirect('/admin/posts');
     }
 
-    public function editarPost(Request $request){}
+    public function editarPost(Request $request)
+    {
+        $this->validate($request, [
+            'titulo'      => 'required|min:5|max:191',
+            'foto'        => 'image:jpg,png,jpeg,JPG,JPEG,PNG|max:5000',
+            'desc_imagen' => 'required|min:10|max:191',
+            'breve_desc'  => 'required|min:25|max:255',
+            'editor1'     => 'required',
+            'etiquetas'   => 'required'
+        ],
+        [
+            'titulo.required'      => 'Es necesario ingresar el titulo del post.',
+            'titulo.min'           => 'El titulo no puede ser menor a 5 caracteres.',
+            'titulo.max'           => 'El titulo no puede exceder los 191 caracteres.',
+            'foto.image'           => 'La imagen del post tiene el formato incorrecto.',
+            'foto.max'             => 'La imagen no puede exceder los 5000 MB.',
+            'desc_imagen.required' => 'La descripcion de la imagen es necesaria.',
+            'desc_imagen.min'      => 'La descripcion de la imagen no puede ser menor a 10 caracteres.',
+            'desc_imagen.max'      => 'La descripcion de la imagen no puede exceder los 191 caracteres.',
+            'breve_desc.required'  => 'Es necesario ingresar la descripción breve del post.',
+            'breve_desc.min'       => 'La descripción breve no puede ser menor a 25 caracteres.',
+            'breve_desc.max'       => 'La descripción breve no puede exceder los 255 caracteres.',
+            'editor1.required'     => 'Es necesario ingresar la descripción del post.',
+            'etiquetas.required'   => 'Es necesario ingresar etiquetas para el post.'
+        ]);
+    }
 
-    public function eliminarPost(Request $request){}
+    public function eliminarPost(Request $request)
+    {
+        $post = Post::where('id_post', $request->input('id'))->first();
+
+        $post->updated_at = date('Y-m-d H:i:s');
+        $post->activo     = 0;
+
+        $post->save();
+
+        $request->session()->flash('status', 'El post fue eliminado correctamente.');
+
+        return redirect('/admin/posts');
+    }
 
     public function categorias()
     {
