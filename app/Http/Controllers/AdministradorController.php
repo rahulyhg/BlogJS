@@ -56,7 +56,7 @@ class AdministradorController extends Controller
         $post->descripcion_foto  = $request->input('desc_imagen');
         $post->breve_descripcion = $request->input('breve_desc');
         $post->descripcion       = json_encode($request->input('editor1'));
-        $post->etiquetas         = $request->input('etiquetas');
+        $post->etiquetas         = json_encode(explode(", ",$request->input('etiquetas')));
         $post->created_at        = date('Y-m-d H:i:s');
         $post->updated_at        = null;
         $post->activo            = 1;
@@ -79,7 +79,7 @@ class AdministradorController extends Controller
             'foto'        => 'image:jpg,png,jpeg,JPG,JPEG,PNG|max:5000',
             'desc_imagen' => 'required|min:10|max:191',
             'breve_desc'  => 'required|min:25|max:255',
-            'editor1'     => 'required',
+            'editor2'     => 'required',
             'etiquetas'   => 'required'
         ],
         [
@@ -94,9 +94,33 @@ class AdministradorController extends Controller
             'breve_desc.required'  => 'Es necesario ingresar la descripción breve del post.',
             'breve_desc.min'       => 'La descripción breve no puede ser menor a 25 caracteres.',
             'breve_desc.max'       => 'La descripción breve no puede exceder los 255 caracteres.',
-            'editor1.required'     => 'Es necesario ingresar la descripción del post.',
+            'editor2.required'     => 'Es necesario ingresar la descripción del post.',
             'etiquetas.required'   => 'Es necesario ingresar etiquetas para el post.'
         ]);
+
+        $post = Post::where('id_post', $request->input('id'))->first();
+
+        $post->id_subcategoria   = $request->input('subcategoria');
+        $post->titulo            = $request->input('titulo');
+        $post->descripcion_foto  = $request->input('desc_imagen');
+        $post->breve_descripcion = $request->input('breve_desc');
+        $post->descripcion       = json_encode($request->input('editor2'));
+        $post->etiquetas         = json_encode(explode(", ",$request->input('etiquetas')));
+        $post->updated_at        = date('Y-m-d H:i:s');
+
+        $post->save();
+
+        if ($request->file('foto')) {
+
+            $foto = $request->file('foto');
+
+            $foto->move('img/posts/', $post->id_post.".jpg");
+
+        }
+
+        $request->session()->flash('status', 'El post fue publicado correctamente.');
+
+        return redirect('/admin/posts');
     }
 
     public function eliminarPost(Request $request)

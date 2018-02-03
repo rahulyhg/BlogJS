@@ -39,7 +39,7 @@
                                     <td>{{ $post->titulo }}</td>
                                     <td>{{ $post->breve_descripcion }}</td>
                                     <td>
-                                        <button class="btn btn-primary" data-toggle="modal" data-target="#editarPost" onclick="editarPost({{ $post->id_post }}, {{ $post->id_subcategoria }}, '{{ $post->titulo }}', '{{ $post->descripcion_foto }}', '{{ $post->breve_descripcion }}'), {{ $post->descripcion }}, '{{ $post->etiquetas }}'">
+                                        <button class="btn btn-primary" data-toggle="modal" data-target="#editarPost" onclick="editarPost({{ $post->id_post }}, {{ $post->id_subcategoria }}, '{{ $post->titulo }}', '{{ $post->descripcion_foto }}', '{{ $post->breve_descripcion }}', {{ $post->descripcion }}, '{{ $post->etiquetas }}')">
                                             <i class="fas fa-pencil-alt"></i>
                                         </button>
                                     </td>
@@ -277,8 +277,6 @@
 
         function editarPost(id_post, id_subcategoria, titulo, descripcion_foto, breve_desc, descripcion, etiquetas) {
 
-            alert(breve_desc);
-
             $(".id_post").val(id_post);
             $(".subcategoria_e option[value='"+id_subcategoria+"']").attr("selected", true);
             $(".titulo_e").val(titulo);
@@ -287,6 +285,7 @@
             CKEDITOR.instances['editor2'].setData(descripcion);
             $(".etiquetas_e").val(jQuery.parseJSON(etiquetas));
             $('.img_previa_editar').attr('src', 'http://localhost:8000/img/posts/'+id_post+'.jpg');
+
         }
 
         $(".imagen_post").change(function(){
