@@ -9,23 +9,11 @@
 |
 */
 
-//Route::get('/', 'IndexController@index');
-Route::get('/', function () {
-    return view('index');
-});
-
-//Route::get('/categoria/{categoria}', 'CategoriaController@index');
-Route::get('/categoria', function () {
-    return view('categoria');
-});
-//Route::get('/serie/{serie}', 'SerieController@index');
-Route::get('/serie', function () {
-    return view('serie');
-});
-//Route::get('/post/{id}/{titulo}', 'PostController@index');
-Route::get('/post', function () {
-    return view('post');
-});
+Route::get('/', 'IndexController@index');
+Route::post('/', 'IndexController@nuevoNewsletter');
+Route::get('/post/{id}/{titulo}', 'PostController@index');
+Route::get('/categoria/{id}/{categoria}', 'CategoriaController@index');
+Route::get('/serie/{id}/{serie}', 'SerieController@index');
 
 /* Rutas de Autenticación */
 Auth::routes();

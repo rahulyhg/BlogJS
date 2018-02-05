@@ -44,13 +44,4 @@
             </a>
         @endif
     </li>
-    <li class="list-group-item {{ ($item == 6) ? 'active' : ''  }}">
-        @if($item != 6)
-            <a href="{{ url('/admin/configuracion') }}">
-                @endif
-                Configuración
-                @if($item != 6)
-            </a>
-        @endif
-    </li>
 </ul>

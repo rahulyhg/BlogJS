@@ -3,16 +3,29 @@
 @section('content')
     <style>
         .categoria {
-            background: purple;
+            background: #3dc7be;
             color: white;
-            padding: 6px 16px 6px 16px;
+            padding: 8px 16px 8px 16px;
             border-radius: 0px;
             font-size: 14px;
             font-weight: bold;
             text-transform: uppercase;
         }
         .author {
+            color: #f75940 !important;
+        }
+        .card {
+            box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+            background-color: transparent !important;
+        }
+        .card > a {
+            color: #424242;
+        }
+        .author {
             color: #2ca02c;
+        }
+        .display-4, .lead {
+            color: #FFF !important;
         }
     </style>
     <div class="container mt-4">
@@ -20,49 +33,102 @@
             <div class="col-12">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                        <li class="breadcrumb-item active">Categoria</li>
+                        <li class="breadcrumb-item"><a href="{{ url('/') }}">Inicio</a></li>
+                        <li class="breadcrumb-item active">{{ $categoria->categoria }}</li>
                     </ol>
                 </nav>
             </div>
         </div>
         <div class="row">
             <div class="col-12">
-                <div class="jumbotron jumbotron-fluid">
+                <div class="jumbotron jumbotron-fluid" style="background: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url({{ url('img/categorias/'.$categoria->id_categoria.'.jpg') }}); background-position: center; background-repeat: no-repeat; background-size: cover;">
                     <div class="container">
                         <center>
-                            <h1 class="display-4">Nombre de la Categoria</h1>
-                            <p class="lead">Esto es una breve descripción de la categoria.</p>
+                            <h1 class="display-4 fm-7">{{ $categoria->categoria }}</h1>
+                            <p class="lead">
+                                <span class="fm-7">Creado el: </span>
+                                {{ formatoFechaMesCompleto($categoria->created_at, "-") }}
+                            </p>
                         </center>
                     </div>
+                </div>
+                <div class="ad mt-3 mb-3">
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- Anuncio -->
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-8558502802286245"
+                         data-ad-slot="3272545119"
+                         data-ad-format="auto"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
                 </div>
             </div>
         </div>
         <div class="row mb-3">
             <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
-                <div class="card">
-                    <img class="card-img-top" src="https://www.movilzona.es/app/uploads/2017/02/Sony-Xperia-XZ-Premium-3.jpg" alt="Descripcion de la Imagen">
-                    <div class="card-body">
-                        <p><span class="categoria">Categoria</span></p>
-                        <h4 class="fm-7">Titulo de la Noticia</h4>
-                        <p>
-                            <span class="fm-7">Por:</span>
-                            <span class="author">Jordy Santamaria</span>
-                            <strong>|</strong>
-                            28-Ene-2018
-                        </p>
-                        <p class="card-text text-justify">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
+                @if(count($posts) > 0)
+                    @foreach($posts as $key => $post)
+                        @if($key == 1)
+                            <div class="ad mt-3 mb-3">
+                                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                <ins class="adsbygoogle"
+                                     style="display:block"
+                                     data-ad-format="fluid"
+                                     data-ad-layout-key="-8e+1p-dm+eg+gy"
+                                     data-ad-client="ca-pub-8558502802286245"
+                                     data-ad-slot="1010355614"></ins>
+                                <script>
+                                    (adsbygoogle = window.adsbygoogle || []).push({});
+                                </script>
+                            </div>
+                        @endif
+                        <div class="card mb-3">
+                            <a href="{{ url('/post/'.$post->id_post.'/'.str_replace(" ", "-", $post->titulo)) }}">
+                                <img class="card-img-top" src="{{ asset('img/posts/'.$post->id_post.'.jpg') }}" alt="{{ $post->descripcion_foto }}">
+                                <div class="card-body">
+                                    <p><span class="categoria">{{ $post->categoria }}</span></p>
+                                    <h4 class="fm-7">{{ $post->titulo }}</h4>
+                                    <p>
+                                        <span>Por:</span>
+                                        <span class="author fm-7">{{ $post->name }}</span>
+                                        <strong>|</strong>
+                                        {{ formatoFechaMesCompleto($post->created_at, "-") }}
+                                    </p>
+                                    <p class="card-text text-justify">{{ $post->breve_descripcion }}</p>
+                                </div>
+                            </a>
+                        </div>
+                    @endforeach
+                @else
+                    <h2 class="fm-7">Al parecer no han publicado posts en esta categoria.</h2>
+                @endif
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
                 <h3 class="fm-7 text-center">Series</h3>
                 <hr>
-                <div class="card">
-                    <img class="card-img-top" src="https://www.movilzona.es/app/uploads/2017/02/Sony-Xperia-XZ-Premium-3.jpg" alt="Descripcion de la Imagen">
-                    <div class="card-body">
-                        <h4 class="fm-7">Nombre de la Serie</h4>
+                @foreach($subcategorias as $serie)
+                <a href="{{ url('/serie/'.$serie->id_subcategoria.'/'.str_replace(" ", "-", $serie->subcategoria)) }}">
+                    <div class="card">
+                        <img class="card-img-top" src="{{ url('img/subcategorias/'.$serie->id_subcategoria.'.jpg') }}" alt="{{ $serie->subcategoria }}">
+                        <div class="card-body">
+                            <h4 class="fm-7">{{ $serie->subcategoria }}</h4>
+                        </div>
                     </div>
+                </a>
+                @endforeach
+                <div class="ad mt-3 mb-3">
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- Anuncio -->
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-8558502802286245"
+                         data-ad-slot="3272545119"
+                         data-ad-format="auto"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
                 </div>
             </div>
         </div>

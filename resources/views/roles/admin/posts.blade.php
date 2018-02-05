@@ -70,7 +70,7 @@
         </div>
     </div>
     <div class="modal fade" id="publicarPost" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title fm-7">Publicar Post</h5>
@@ -156,7 +156,7 @@
         </div>
     </div>
     <div class="modal fade" id="editarPost" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title fm-7">Editar Post</h5>
@@ -187,7 +187,7 @@
                             </div>
                             <div class="input-group mb-2">
                                 <label class="custom-file w-100">
-                                    <input type="file" class="custom-file-input imagen_post" name="foto">
+                                    <input type="file" class="custom-file-input imagen_post_editar" name="foto">
                                     <span class="custom-file-control"></span>
                                 </label>
                             </div>
@@ -228,7 +228,7 @@
                                     </div>
                                 @endif
                             </div>
-                            <button type="submit" class="btn btn-primary">Registrar</button>
+                            <button type="submit" class="btn btn-primary">Actualizar</button>
                         </form>
                 </div>
             </div>

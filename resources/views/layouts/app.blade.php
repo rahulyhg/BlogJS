@@ -3,17 +3,85 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=gb18030">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Jordy Santamaria</title>
 
+    <!-- Metas -->
+    @if(isset($metas))
+        <meta property="fb:app_id" content="817542738420507" />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="{{ $metas['titulo'] }}" />
+        <meta property="og:url" content="{{ $metas['ruta_actual'] }}" />
+        <meta property="og:image" content="{{ $metas['imagen'] }}" />
+        <meta property="og:description" content="{{ $metas['descripcion'] }}" />
+        <meta property="og:updated_time" content="{{ $metas['fecha'] }}" />
+        <meta name="twitter:site" content="@JordySantm94" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="{{ $metas['ruta_actual'] }}" />
+        <meta name="twitter:title" content="{{ $metas['titulo'] }}" />
+        <meta name="twitter:description" content="{{ $metas['descripcion'] }}" />
+        <meta name="twitter:image" content="{{ $metas['imagen'] }}" />
+        <meta name="title" content="{{ $metas['titulo'] }}" />
+        <meta name="keywords" content="{{ $metas['keywords'] }}" />
+        <meta name="news_keywords" content="{{ $metas['keywords'] }}" />
+        <meta name="description" content="{{ $metas['descripcion'] }}" />
+        <meta name="lang" content="es" />
+        <meta name="author" content="Jordy Santamaria" />
+        <meta name="date" content="{{ $metas['fecha'] }}" />
+        <meta property="article:published_time" content="{{ $metas['fecha'] }}" />
+        <meta property="article:modified_time" content="{{ $metas['fecha'] }}" />
+        <meta property="article:publisher" content="https://www.facebook.com" />
+        <meta property="article:section" content="{{ $metas['categoria'] }}" />
+        <!-- meta property="article:tag" content="Neymar" /--><!-- TAGS IN META'S -->
+        <meta name="DC.date.issued" scheme="W3CDTF" content="{{ $metas['fecha'] }}" />
+        <meta name="DC.date.created" scheme="W3CDTF" content="{{ $metas['fecha'] }}" />
+        <meta name="DC.date" scheme="W3CDTF" content="{{ $metas['fecha'] }}" />
+        <meta name="DC.creator" content="Jordy Santamaria" />
+        <meta name="DC.publisher" content="{{ $metas['name'] }}" />
+        <meta name="DC.language" scheme="RFC1766" content="es" />
+        <meta name="DC.title" lang="es" content="{{ $metas['titulo'] }}" />
+        <meta name="DC.description" lang="es" content="{{ $metas['descripcion'] }}" />
+        <meta name="DC.subject" lang="es" content="{{ $metas['keywords'] }}" />
+
+        <meta itemprop="name" content="{{ $metas['titulo'] }}" />
+        <meta itemprop="description" content="{{ $metas['descripcion'] }}" />
+        <meta itemprop="image" content="{{ $metas['imagen'] }}" />
+
+        <!-- metadata estática -->
+
+        <meta name="organization" content="Noticias, Criticas, Gameplays y mucho más!" />
+        <meta name="locality" content="Mexico, Puebla" />
+        <meta name="revisit-after" content="1 days" />
+        <meta name="robots" content="INDEX,FOLLOW,NOODP" />
+
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="format-detection" content="address=no,email=no,telephone:no" />
+        <link rel="icon" type="image/x-icon" href="{{ asset('img/logo/ico.ico') }}" />
+        <link rel="publisher" href="https://plus.google.com/u/0/+JordySantamaria1994">
+    @endif
     <!-- Styles -->
+    <link rel="shortcut icon" href="{{ asset('img/logo/ico.ico') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('fontawesome-5.0.2/css/fontawesome-all.css')  }}">
     <link rel="stylesheet" href="{{ asset('custom/css/general.css') }}">
+    <style>
+        .navbar {
+            padding: 15px;
+            background-color: #334252 !important;
+        }
+        .navbar-nav > a {
+            color: #FFF !important;
+        }
+        .navbar-brand {
+            color: #FFF !important;
+        }
+    </style>
 </head>
 <body>
 <div id="fb-root"></div>
@@ -25,15 +93,17 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
     <div id="app">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">JS</a>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="{{ url('') }}">
+                <img src="{{ asset('img/logo/logoCuadrado.png') }}" width="50" height="50" alt="">
+            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     @foreach($categorias as $categoria)
-                    <a class="nav-item nav-link" href="#">{{ $categoria->categoria }}</a>
+                    <a class="nav-item nav-link fm-7" href="{{ url('/categoria/'.$categoria->id_categoria.'/'.$categoria->categoria) }}">{{ $categoria->categoria }}</a>
                     @endforeach
                 </div>
             </div>

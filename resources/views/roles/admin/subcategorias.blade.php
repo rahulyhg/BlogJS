@@ -80,7 +80,7 @@
                 </div>
                 <div class="modal-body">
                     @if(count($categorias) > 0)
-                        <form action="{{ url('/admin/subcategorias') }}" method="POST">
+                        <form action="{{ url('/admin/subcategorias') }}" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="form-group">
                                 <label for="categoria">Categoria</label>
@@ -99,6 +99,13 @@
                                     </div>
                                 @endif
                             </div>
+                            <div class="input-group mb-2">
+                                <label class="custom-file w-100">
+                                    <input type="file" class="custom-file-input imagen_post" name="foto">
+                                    <span class="custom-file-control"></span>
+                                </label>
+                            </div>
+                            <img class="img-fluid img_previa mt-2 mb-2 w-100" src="#" alt="Es necesario subir una imagen.">
                             <button type="submit" class="btn btn-primary btn-block">Agregar Subcategoria</button>
                         </form>
                     @else
@@ -123,7 +130,7 @@
                 </div>
                 <div class="modal-body">
                     @if(count($categorias) > 0)
-                        <form action="{{ url('/admin/editar-subcategorias') }}" method="POST">
+                        <form action="{{ url('/admin/editar-subcategorias') }}" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <input type="hidden" class="id_subcategoria" name="id">
                             <div class="form-group">
@@ -143,6 +150,13 @@
                                     </div>
                                 @endif
                             </div>
+                            <div class="input-group mb-2">
+                                <label class="custom-file w-100">
+                                    <input type="file" class="custom-file-input imagen_post_editar" name="foto">
+                                    <span class="custom-file-control"></span>
+                                </label>
+                            </div>
+                            <img class="img-fluid img_previa_editar mt-2 mb-2 w-100" src="#" alt="Es necesario subir una imagen.">
                             <button type="submit" class="btn btn-primary btn-block">Agregar Subcategoria</button>
                         </form>
                     @else
@@ -163,6 +177,51 @@
             $(".id_subcategoria").val(id_subcategoria);
             $(".categoria option[value='"+id_categoria+"']").attr("selected", true);
             $(".subcategoria").val(subcategoria);
+            $('.img_previa_editar').attr('src', 'http://localhost:8000/img/subcategorias/'+id_subcategoria+'.jpg');
         }
+
+        function vistaPrevia(input) {
+
+            if (input.files && input.files[0]) {
+
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+
+                    $('.img_previa').attr('src', e.target.result);
+
+                }
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+
+        }
+
+        function vistaPreviaEditar(input) {
+
+            if (input.files && input.files[0]) {
+
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+
+                    $('.img_previa_editar').attr('src', e.target.result);
+
+                }
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+
+        }
+
+        $(".imagen_post").change(function(){
+            vistaPrevia(this);
+        });
+
+        $(".imagen_post_editar").change(function(){
+            vistaPreviaEditar(this);
+        });
     </script>
 @endsection

@@ -7,7 +7,7 @@
                 @include('layouts.admin.list-group', [ 'item' => $list_group_item ])
             </div>
             <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 mt-3">
-                <h2 class="fm-7 mb-3">Newsletter</h2>
+                <h2 class="fm-7 mb-3">Estadisticas</h2>
                 <hr>
                 @if (session('status'))
                     <div class="alert alert-success" role="alert">
@@ -25,24 +25,30 @@
                         </ul>
                     </div>
                 @endif
-                @if(count($newsletters) > 0)
+                @if(count($estadisticas) > 0)
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <tr>
-                                <th>Correo</th>
-                                <th>Fecha de Creación</th>
+                                <th>Navegador</th>
+                                <th>SO</th>
+                                <th>Lenguaje</th>
+                                <th>URL</th>
+                                <th>Fecha</th>
                             </tr>
-                            @foreach($newsletters as $newsletter)
+                            @foreach($estadisticas as $estadistica)
                                 <tr>
-                                    <td>{{ $newsletter->correo }}</td>
-                                    <td>{{ $newsletter->created_at }}</td>
+                                    <td>{{ $estadistica->navegador }}</td>
+                                    <td>{{ $estadistica->sistema_operativo }}</td>
+                                    <td>{{ $estadistica->lenguaje }}</td>
+                                    <td>{{ $estadistica->url }}</td>
+                                    <td>{{ $estadistica->created_at }}</td>
                                 </tr>
                             @endforeach
                         </table>
                     </div>
                 @else
                     <h2 class="text-center fm-7">
-                        Nadie se ha registrado aún en el Newsletter.
+                        Al parecer aun no han visitado el sitio.
                     </h2>
                 @endif
             </div>

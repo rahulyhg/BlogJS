@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Hash;
 use App\Post;
 use App\Categoria;
 use App\Subcategoria;
+use App\Agente;
+use App\Newsletter;
 
 class AdministradorController extends Controller
 {
@@ -149,11 +151,14 @@ class AdministradorController extends Controller
     {
         $this->validate($request, [
             'categoria' => 'required|min:3|max:191',
+            'foto'      => 'image:jpg,png,jpeg,JPG,JPEG,PNG|max:5000',
         ],
         [
             'categoria.required' => 'Es necesario rellenar el campo de categoria.',
             'categoria.min'      => 'La categoria no puede tener menos de 3 caracteres.',
-            'categoria.max'      => 'La categoria no puede exceder los 191 caracteres.'
+            'categoria.max'      => 'La categoria no puede exceder los 191 caracteres.',
+            'foto.image'         => 'La imagen del post tiene el formato incorrecto.',
+            'foto.max'           => 'La imagen no puede exceder los 5000 MB.',
         ]);
 
         $categoria = new Categoria;
@@ -166,6 +171,10 @@ class AdministradorController extends Controller
 
         $categoria->save();
 
+        $foto = $request->file('foto');
+
+        $foto->move('img/categorias/', $categoria->id_categoria.".jpg");
+
         $request->session()->flash('status', 'Categoria añadida correctamente.');
 
         return redirect('/admin/categorias');
@@ -175,11 +184,14 @@ class AdministradorController extends Controller
     {
         $this->validate($request, [
             'categoria' => 'required|min:3|max:191',
+            'foto'      => 'image:jpg,png,jpeg,JPG,JPEG,PNG|max:5000',
         ],
         [
             'categoria.required' => 'Es necesario rellenar el campo de categoria.',
             'categoria.min'      => 'La categoria no puede tener menos de 3 caracteres.',
-            'categoria.max'      => 'La categoria no puede exceder los 191 caracteres.'
+            'categoria.max'      => 'La categoria no puede exceder los 191 caracteres.',
+            'foto.image'         => 'La imagen del post tiene el formato incorrecto.',
+            'foto.max'           => 'La imagen no puede exceder los 5000 MB.',
         ]);
 
         $categoria = Categoria::where('id_categoria', $request->input('id'))->first();
@@ -188,6 +200,14 @@ class AdministradorController extends Controller
         $categoria->updated_at = date('Y-m-d H:i:s');
 
         $categoria->save();
+
+        if ($request->file('foto')) {
+
+            $foto = $request->file('foto');
+
+            $foto->move('img/categorias/', $categoria->id_categoria.".jpg");
+
+        }
 
         $request->session()->flash('status', 'La categoria fue modificada correctamente');
 
@@ -221,11 +241,14 @@ class AdministradorController extends Controller
     {
         $this->validate($request, [
             'subcategoria' => 'required|min:3|max:191',
+            'foto'         => 'image:jpg,png,jpeg,JPG,JPEG,PNG|max:5000',
         ],
         [
             'subcategoria.required' => 'Es necesario ingresar el nombre de la subcategoria.',
             'subcategoria.min'      => 'La subcategoria no puede tener menos de 3 caracteres.',
-            'subcategoria.max'      => 'La subcategoria no puede exceder los 191 caracteres.'
+            'subcategoria.max'      => 'La subcategoria no puede exceder los 191 caracteres.',
+            'foto.image'            => 'La imagen del post tiene el formato incorrecto.',
+            'foto.max'              => 'La imagen no puede exceder los 5000 MB.',
         ]);
 
         $subcategoria = new Subcategoria;
@@ -239,6 +262,10 @@ class AdministradorController extends Controller
 
         $subcategoria->save();
 
+        $foto = $request->file('foto');
+
+        $foto->move('img/subcategorias/', $subcategoria->id_subcategoria.".jpg");
+
         $request->session()->flash('status', 'La subcategoria fue registrada correctamente.');
 
         return redirect('/admin/subcategorias');
@@ -248,11 +275,14 @@ class AdministradorController extends Controller
     {
         $this->validate($request, [
             'subcategoria' => 'required|min:3|max:191',
+            'foto'         => 'image:jpg,png,jpeg,JPG,JPEG,PNG|max:5000',
         ],
         [
             'subcategoria.required' => 'Es necesario ingresar el nombre de la subcategoria.',
             'subcategoria.min'      => 'La subcategoria no puede tener menos de 3 caracteres.',
-            'subcategoria.max'      => 'La subcategoria no puede exceder los 191 caracteres.'
+            'subcategoria.max'      => 'La subcategoria no puede exceder los 191 caracteres.',
+            'foto.image'            => 'La imagen del post tiene el formato incorrecto.',
+            'foto.max'              => 'La imagen no puede exceder los 5000 MB.',
         ]);
 
         $subcategoria = Subcategoria::where('id_subcategoria', $request->input('id'))->first();
@@ -262,6 +292,14 @@ class AdministradorController extends Controller
         $subcategoria->updated_at   = date('Y-m-d H:i:s');
 
         $subcategoria->save();
+
+        if ($request->file('foto')) {
+
+            $foto = $request->file('foto');
+
+            $foto->move('img/subcategorias/', $subcategoria->id_subcategoria.".jpg");
+
+        }
 
         $request->session()->flash('status', 'La subcategoria fue actualizada correctamente.');
 
@@ -282,16 +320,19 @@ class AdministradorController extends Controller
         return redirect('/admin/subcategorias');
     }
 
-    public function estadisticas(){}
-
-    public function newsletter(){}
-
-    public function generarPassword()
+    public function estadisticas()
     {
-        $contrasena = "barcelona1994";
+        return view('roles.admin.estadisticas', [
+            'list_group_item' => 4,
+            'estadisticas'    => Agente::all(),
+        ]);
+    }
 
-        $contrasenaHash = Hash::make($contrasena);
-
-        dd($contrasenaHash);
+    public function newsletter()
+    {
+        return view('roles.admin.newsletter', [
+            'list_group_item' => 5,
+            'newsletters'     => Newsletter::all(),
+        ]);
     }
 }
