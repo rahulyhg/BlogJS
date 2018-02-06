@@ -8,4 +8,5 @@ class Agente extends Model
 {
     protected $table = "agente";
     protected $primaryKey = "id_agente";
+    public $timestamps = false;
 }

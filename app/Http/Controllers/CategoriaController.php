@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Jenssegers\Agent\Agent;
+
+use App\Agente;
 use App\Categoria;
 use App\Subcategoria;
 use App\Post;
@@ -11,14 +14,18 @@ use App\Post;
 class CategoriaController extends Controller
 {
     protected $post;
+    protected $agent;
 
     public function __construct()
     {
         $this->post = new Post;
+        $this->agent = new Agent();
     }
 
     public function index($id, $categoria)
     {
+        $this->nuevoAgente();
+
         $categoria = Categoria::where('id_categoria', $id)->first();
 
         $metas = [
@@ -38,5 +45,19 @@ class CategoriaController extends Controller
             'subcategorias' => Subcategoria::where('id_categoria', $id)->take(3)->get(),
             'metas'         => $metas
         ]);
+    }
+
+    public function nuevoAgente()
+    {
+        $agente = new Agente;
+
+        $agente->id_agente         = null;
+        $agente->navegador         = $this->agent->browser();
+        $agente->sistema_operativo = $this->agent->platform();
+        $agente->lenguaje          = json_encode($this->agent->languages());
+        $agente->url               = url()->current();
+        $agente->created_at        = date('Y-m-d H:i:s');
+
+        $agente->save();
     }
 }
