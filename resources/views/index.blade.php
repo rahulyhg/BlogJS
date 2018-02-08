@@ -91,7 +91,7 @@
                             </script>
                         </div>
                     @endif
-                    @if($key == 1)
+                    @if($key >= 1)
                         <div class="card mb-3">
                             <a href="{{ url('/post/'.$nueva->id_post.'/'.str_replace(" ", "-", $nueva->titulo)) }}">
                                 <img class="card-img-top" src="{{ asset('img/posts/'.$nueva->id_post.'.jpg') }}" alt="{{ $nueva->descripcion_foto }}">

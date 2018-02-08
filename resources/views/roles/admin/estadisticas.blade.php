@@ -34,6 +34,7 @@
                                 <th>Lenguaje</th>
                                 <th>URL</th>
                                 <th>Fecha</th>
+                                <th>Visitas</th>
                             </tr>
                             @foreach($estadisticas as $estadistica)
                                 <tr>
@@ -41,10 +42,12 @@
                                     <td>{{ $estadistica->sistema_operativo }}</td>
                                     <td>{{ $estadistica->lenguaje }}</td>
                                     <td>{{ $estadistica->url }}</td>
-                                    <td>{{ $estadistica->created_at }}</td>
+                                    <td>{{ formatoFechaMesCompleto($estadistica->created_at, "-") }}</td>
+                                    <td>{{ $estadistica->Total }}</td>
                                 </tr>
                             @endforeach
                         </table>
+                        {{ $estadisticas->links('layouts.pagination') }}
                     </div>
                 @else
                     <h2 class="text-center fm-7">

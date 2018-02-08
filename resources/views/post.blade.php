@@ -44,7 +44,7 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <h1 class="fm-7" style="font-size: 60px;">{{ $post->titulo }}</h1>
+                <h1 class="fm-7" style="font-size: 50px;">{{ $post->titulo }}</h1>
                 <h5 class="mb-3 text-justify">{{ $post->breve_descripcion }}</h5>
             </div>
         </div>

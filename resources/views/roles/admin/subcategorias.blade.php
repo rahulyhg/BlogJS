@@ -53,6 +53,7 @@
                                 </tr>
                             @endforeach
                         </table>
+                        {{ $subcategorias->links('layouts.pagination') }}
                     </div>
                     <button class="btn btn-outline-primary mt-2" data-toggle="modal" data-target="#agregarSubcategoria">
                         Agregar Subcategoria

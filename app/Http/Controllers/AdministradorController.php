@@ -11,14 +11,22 @@ use App\Categoria;
 use App\Subcategoria;
 use App\Agente;
 use App\Newsletter;
+use Jenssegers\Agent\Agent;
 
 class AdministradorController extends Controller
 {
+    protected $agente;
+
+    public function __construct()
+    {
+        $this->agente = new Agente;
+    }
+
     public function posts()
     {
         return view('roles.admin.posts', [
             'list_group_item' => 1,
-            'posts'           => Post::where('activo', 1)->get(),
+            'posts'           => Post::where('activo', 1)->orderBy('id_post', 'DESC')->paginate(5),
             'subcategorias'   => Subcategoria::where('activo', 1)->get(),
         ]);
     }
@@ -143,7 +151,7 @@ class AdministradorController extends Controller
     {
         return view('roles.admin.categorias', [
             'list_group_item' => 2,
-            'categorias'      => Categoria::where('activo', 1)->get(),
+            'categorias'      => Categoria::where('activo', 1)->orderBy('id_categoria', 'DESC')->paginate(5),
         ]);
     }
 
@@ -232,8 +240,8 @@ class AdministradorController extends Controller
     {
         return view('roles.admin.subcategorias', [
             'list_group_item' => 3,
-            'categorias'      => Categoria::where('activo', 1)->get(),
-            'subcategorias'   => Subcategoria::where('activo', 1)->get(),
+            'categorias'      => Categoria::where('activo', 1)->orderBy('id_categoria', 'DESC')->get(),
+            'subcategorias'   => Subcategoria::where('activo', 1)->orderBy('id_subcategoria', 'DESC')->paginate(5),
         ]);
     }
 
@@ -324,7 +332,7 @@ class AdministradorController extends Controller
     {
         return view('roles.admin.estadisticas', [
             'list_group_item' => 4,
-            'estadisticas'    => Agente::all(),
+            'estadisticas'    => $this->agente->obtenerEstadisticas(),
         ]);
     }
 
