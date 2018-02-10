@@ -15,6 +15,10 @@ use Jenssegers\Agent\Agent;
 
 class AdministradorController extends Controller
 {
+    const ACTIVADO = 1;
+    const DESACTIVADO = 0;
+    const PAGINATE = 5;
+
     protected $agente;
 
     public function __construct()
@@ -26,8 +30,8 @@ class AdministradorController extends Controller
     {
         return view('roles.admin.posts', [
             'list_group_item' => 1,
-            'posts'           => Post::where('activo', 1)->orderBy('id_post', 'DESC')->paginate(5),
-            'subcategorias'   => Subcategoria::where('activo', 1)->get(),
+            'posts'           => Post::where('activo', self::ACTIVADO)->orderBy('id_post', 'DESC')->paginate(self::PAGINATE),
+            'subcategorias'   => Subcategoria::where('activo', self::ACTIVADO)->get(),
         ]);
     }
 
@@ -69,7 +73,7 @@ class AdministradorController extends Controller
         $post->etiquetas         = json_encode(explode(", ",$request->input('etiquetas')));
         $post->created_at        = date('Y-m-d H:i:s');
         $post->updated_at        = null;
-        $post->activo            = 1;
+        $post->activo            = self::ACTIVADO;
 
         $post->save();
 
@@ -138,7 +142,7 @@ class AdministradorController extends Controller
         $post = Post::where('id_post', $request->input('id'))->first();
 
         $post->updated_at = date('Y-m-d H:i:s');
-        $post->activo     = 0;
+        $post->activo     = self::DESACTIVADO;
 
         $post->save();
 
@@ -151,7 +155,7 @@ class AdministradorController extends Controller
     {
         return view('roles.admin.categorias', [
             'list_group_item' => 2,
-            'categorias'      => Categoria::where('activo', 1)->orderBy('id_categoria', 'DESC')->paginate(5),
+            'categorias'      => Categoria::where('activo', self::ACTIVADO)->orderBy('id_categoria', 'DESC')->paginate(self::PAGINATE),
         ]);
     }
 
@@ -175,7 +179,7 @@ class AdministradorController extends Controller
         $categoria->categoria    = $request->input('categoria');
         $categoria->created_at   = date('Y-m-d H:i:s');
         $categoria->updated_at   = null;
-        $categoria->activo       = 1;
+        $categoria->activo       = self::ACTIVADO;
 
         $categoria->save();
 
@@ -227,7 +231,7 @@ class AdministradorController extends Controller
         $categoria = Categoria::where('id_categoria', $request->input('id'))->first();
 
         $categoria->updated_at = date('Y-m-d H:i:s');
-        $categoria->activo     = 0;
+        $categoria->activo     = self::DESACTIVADO;
 
         $categoria->save();
 
@@ -240,8 +244,8 @@ class AdministradorController extends Controller
     {
         return view('roles.admin.subcategorias', [
             'list_group_item' => 3,
-            'categorias'      => Categoria::where('activo', 1)->orderBy('id_categoria', 'DESC')->get(),
-            'subcategorias'   => Subcategoria::where('activo', 1)->orderBy('id_subcategoria', 'DESC')->paginate(5),
+            'categorias'      => Categoria::where('activo', self::ACTIVADO)->orderBy('id_categoria', 'DESC')->get(),
+            'subcategorias'   => Subcategoria::where('activo', self::ACTIVADO)->orderBy('id_subcategoria', 'DESC')->paginate(self::PAGINATE),
         ]);
     }
 
@@ -266,7 +270,7 @@ class AdministradorController extends Controller
         $subcategoria->subcategoria    = $request->input('subcategoria');
         $subcategoria->created_at      = date('Y-m-d H:i:s');
         $subcategoria->updated_at      = null;
-        $subcategoria->activo          = 1;
+        $subcategoria->activo          = self::ACTIVADO;
 
         $subcategoria->save();
 
@@ -319,7 +323,7 @@ class AdministradorController extends Controller
         $subcategoria = Subcategoria::where('id_subcategoria', $request->input('id'))->first();
 
         $subcategoria->updated_at = date('Y-m-d H:i:s');
-        $subcategoria->activo     = 0;
+        $subcategoria->activo     = self::DESACTIVADO;
 
         $subcategoria->save();
 
