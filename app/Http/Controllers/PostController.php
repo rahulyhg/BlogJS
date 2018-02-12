@@ -32,7 +32,7 @@ class PostController extends Controller
         }
 
         $metas = [
-            'titulo'      => $post->titulo.' | Jordy Santamaria',
+            'titulo'      => $post->titulo.' | '.$post->subcategoria,
             'imagen'      => asset('img/posts/'.$post->id_post.'.jpg'),
             'descripcion' => $post->breve_descripcion,
             'fecha'       => $post->created_at,

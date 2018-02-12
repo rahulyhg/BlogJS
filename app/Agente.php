@@ -11,6 +11,11 @@ class Agente extends Model
     protected $primaryKey = "id_agente";
     public $timestamps = false;
 
+    /**
+     * [Funcion creada para obtener las estadisticas generales de la pagina]
+     * @return mixed
+     * @author Jordy Santamaria [santmjoy@gmail.com]
+     */
     public function obtenerEstadisticas()
     {
         $query = DB::table($this->table)

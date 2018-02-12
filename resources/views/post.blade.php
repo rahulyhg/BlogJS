@@ -70,7 +70,7 @@
                 <hr>
                 <div class="row">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3 p-0">
-                        <img src="{{ asset('img/logo') }}" class="rounded-circle w-50 obj-center">
+                        <img src="{{ asset('img/usuarios/1.jpg') }}" class="rounded-circle w-50 obj-center">
                     </div>
                     <div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 p-0 align-self-center">
                         <p class="fm-9">{{ strtoupper($post->name) }}</p>

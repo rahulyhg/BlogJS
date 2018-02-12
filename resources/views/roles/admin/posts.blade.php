@@ -57,12 +57,12 @@
                         </table>
                         {{ $posts->links('layouts.pagination') }}
                     </div>
-                    <button class="btn btn-outline-primary mt-2" data-toggle="modal" data-target="#publicarPost">Publicar Post</button>
+                    <button class="btn btn-outline-primary mt-2 mb-2" data-toggle="modal" data-target="#publicarPost">Publicar Post</button>
                 @else
                     <h2 class="text-center fm-7">
                         Al parecer aun no has publicado posts.
                         <br>
-                        <button class="btn btn-outline-primary mt-3" data-toggle="modal" data-target="#publicarPost">
+                        <button class="btn btn-outline-primary mt-3 mb-3" data-toggle="modal" data-target="#publicarPost">
                             Publicar Post
                         </button>
                     </h2>
