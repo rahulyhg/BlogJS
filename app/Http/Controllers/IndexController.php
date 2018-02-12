@@ -39,7 +39,7 @@ class IndexController extends Controller
 
         return view('index', [
             'jumbotron'  => $this->post->posts(1, null, false),
-            'nuevas'     => $this->post->posts(4, null, true),
+            'nuevas'     => $this->post->posts(3, null, true),
             'categorias' => Categoria::where('activo', 1)->get(),
             'metas'      => $metas,
         ]);

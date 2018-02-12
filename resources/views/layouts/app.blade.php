@@ -31,7 +31,8 @@
         <meta name="news_keywords" content="{{ $metas['keywords'] }}" />
         <meta name="description" content="{{ $metas['descripcion'] }}" />
         <meta name="lang" content="es" />
-        <meta name="author" content="Jordy Santamaria" />
+        <meta name="author" content="jordysantamaria.com" />
+        <meta name="owner" content="Emmanuel Jordy Santamaria Cruz">
         <meta name="date" content="{{ $metas['fecha'] }}" />
         <meta property="article:published_time" content="{{ $metas['fecha'] }}" />
         <meta property="article:modified_time" content="{{ $metas['fecha'] }}" />
@@ -70,6 +71,8 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('fontawesome-5.0.2/css/fontawesome-all.css')  }}">
     <link rel="stylesheet" href="{{ asset('custom/css/general.css') }}">
+    <link rel="stylesheet" href="{{ asset('custom/css/pagination.css') }}">
+    @yield('styles')
     <style>
         .navbar {
             padding: 15px;
@@ -82,6 +85,15 @@
             color: #FFF !important;
         }
     </style>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111173717-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-111173717-1');
+    </script>
 </head>
 <body>
 <div id="fb-root"></div>
@@ -101,11 +113,28 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
+                <div class="navbar-nav mr-auto">
                     @foreach($categorias as $categoria)
                     <a class="nav-item nav-link fm-7" href="{{ url('/categoria/'.$categoria->id_categoria.'/'.$categoria->categoria) }}">{{ $categoria->categoria }}</a>
                     @endforeach
                 </div>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link icon-social icon-social-twitter" href="#" target="_blank">
+                            <i class="fab fa-twitter-square"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link icon-social icon-social-google" href="#" target="_blank">
+                            <i class="fab fa-google-plus"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link icon-social icon-social-instagram" href="#" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </nav>
         @yield('content')

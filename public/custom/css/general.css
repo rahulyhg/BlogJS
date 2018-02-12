@@ -29,3 +29,19 @@ th {
     font-family: 'Muli', sans-serif;
     font-weight: 900;
 }
+
+/* Estilos NavBar */
+.icon-social {
+    font-size: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.icon-social-twitter {
+    color : #03A9F4;
+}
+.icon-social-google {
+    color : #E53935 !important;
+}
+.icon-social-instagram {
+    color : #AB47BC;
+}

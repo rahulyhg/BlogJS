@@ -1,46 +1,9 @@
 @extends('layouts.app')
 
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('custom/css/index.css') }}">
+@endsection
 @section('content')
-    <style>
-        .categoria {
-            background: #3dc7be;
-            color: white;
-            padding: 8px 16px 8px 16px;
-            border-radius: 0px;
-            font-size: 14px;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-        .author {
-            color: #f75940;
-        }
-        .panel {
-            box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-            padding: 25px;
-            border-radius: 2px;
-        }
-        .card {
-            box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-            background-color: transparent !important;
-        }
-        .card > a {
-            color: #424242;
-        }
-        .list-group {
-            background-color: white;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-        }
-        .list-group-item {
-            border: 0px !important;
-        }
-        .list-group > .list-group-item > a {
-            color: #424242;
-        }
-        .shadow {
-            background-color: #0009;
-            padding: 10px;
-        }
-    </style>
     <div class="container mt-4">
         <div class="row">
             <div class="col-12">
@@ -77,7 +40,7 @@
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
                 @foreach($nuevas as $key => $nueva)
-                    @if($key == 2)
+                    @if($key == 1)
                         <div class="ad mt-3 mb-3">
                             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                             <ins class="adsbygoogle"
@@ -92,7 +55,7 @@
                         </div>
                     @endif
                     @if($key >= 1)
-                        <div class="card mb-3">
+                        <div class="card mb-4">
                             <a href="{{ url('/post/'.$nueva->id_post.'/'.str_replace(" ", "-", $nueva->titulo)) }}">
                                 <img class="card-img-top" src="{{ asset('img/posts/'.$nueva->id_post.'.jpg') }}" alt="{{ $nueva->descripcion_foto }}">
                                 <div class="card-body">
@@ -110,6 +73,8 @@
                         </div>
                     @endif
                 @endforeach
+                <hr>
+                {{ $nuevas->links('layouts.pagination') }}
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
                 <div class="ad mt-3 mb-3">
@@ -149,7 +114,7 @@
                             @endif
                             {{ csrf_field() }}
                             <input type="email" name="correo" class="form-control" placeholder="Ingresa tu correo electronico aquí.">
-                            <button type="submit" class="btn btn-primary btn-block mt-3 fm-7">
+                            <button type="submit" class="btn btn-success-alt btn-block mt-3 fm-7">
                                 Enviar
                                 <i class="fas fa-check-circle"></i>
                             </button>
@@ -170,15 +135,5 @@
     </div>
 @endsection
 @section('scripts')
-    <script>
-        $(window).resize(function(){
-            if ($(window).width() <= 550) {
-                $(".card-main").hide();
-                $(".ad-top").hide();
-            } else {
-                $(".card-main").show();
-                $(".ad-top").show();
-            }
-        });
-    </script>
+    <script rel="script" src="{{ asset('custom/js/index.js') }}"></script>
 @endsection

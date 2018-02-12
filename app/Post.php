@@ -26,12 +26,12 @@ class Post extends Model
             ->join('categoria', 'categoria.id_categoria', '=', 'subcategoria.id_categoria')
             ->join('users', 'post.id_usuario', '=', 'users.id')
             ->whereRaw("post.activo = 1".$where)
-            ->orderByRaw('post.id_post DESC')
-            ->limit($limit);
+            ->orderByRaw('post.id_post DESC');
 
         if ($type == true) {
-            return $result->get();
+            return $result->paginate($limit);
         } else {
+            $result->limit($limit);
             return $result->first();
         }
 

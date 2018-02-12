@@ -1,0 +1,43 @@
+.categoria {
+    background: #3dc7be;
+    color: white;
+    padding: 8px 16px 8px 16px;
+    border-radius: 0px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.author {
+    color: #f75940;
+}
+.panel {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    padding: 25px;
+    border-radius: 2px;
+}
+.card {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    background-color: transparent !important;
+}
+.card > a {
+    color: #424242;
+}
+.list-group {
+    background-color: white;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+.list-group-item {
+    border: 0px !important;
+}
+.list-group > .list-group-item > a {
+    color: #424242;
+}
+.shadow {
+    background-color: #0009;
+    padding: 10px;
+}
+.btn-success-alt {
+    background-color: #3dc7be;
+    border-color: #3dc7be;
+    color : #FFF;
+}
