@@ -37,11 +37,11 @@ th {
     padding-right: 10px;
 }
 .icon-social-twitter {
-    color : #03A9F4;
+    color : #03A9F4 !important;
 }
 .icon-social-google {
     color : #E53935 !important;
 }
 .icon-social-instagram {
-    color : #AB47BC;
+    color : #AB47BC !important;
 }

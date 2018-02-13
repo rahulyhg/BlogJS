@@ -1,35 +1,9 @@
 @extends('layouts.app')
 
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('custom/css/post.css') }}">
+@endsection
 @section('content')
-    <style>
-        .obj-center {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .btn-facebook {
-            background-color: #0D47A1 !important;
-            border-color: #0D47A1 !important;
-        }
-        .badge {
-            background-color: #3dc7be;
-            color: #FFF;
-            padding: 10px;
-            border-radius: 20px;
-            font-size: 15px;
-            margin-bottom: 5px;
-        }
-        .list-group {
-            background-color: white;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-        }
-        .list-group-item {
-            border: 0px !important;
-        }
-        .list-group > .list-group-item > a {
-            color: #424242;
-        }
-    </style>
     <div class="container mt-4">
         <div class="row">
             <div class="col-12">

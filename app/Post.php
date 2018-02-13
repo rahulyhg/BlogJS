@@ -25,7 +25,7 @@ class Post extends Model
             ->join('subcategoria', 'post.id_subcategoria', '=', 'subcategoria.id_subcategoria')
             ->join('categoria', 'categoria.id_categoria', '=', 'subcategoria.id_categoria')
             ->join('users', 'post.id_usuario', '=', 'users.id')
-            ->whereRaw("post.activo = 1".$where)
+            ->whereRaw("post.activo = 1 ".$where)
             ->orderByRaw('post.id_post DESC');
 
         if ($type == true) {

@@ -55,7 +55,7 @@
 
         <!-- metadata estática -->
 
-        <meta name="organization" content="Noticias, Criticas, Gameplays y mucho más!" />
+        <meta name="organization" content="Noticias, Peliculas, Gameplays y mucho más!" />
         <meta name="locality" content="Mexico, Puebla" />
         <meta name="revisit-after" content="1 days" />
         <meta name="robots" content="INDEX,FOLLOW,NOODP" />
@@ -107,7 +107,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-lg navbar-light">
             <a class="navbar-brand" href="{{ url('') }}">
-                <img src="{{ asset('img/logo/logoCuadrado.png') }}" width="50" height="50" alt="">
+                <img src="{{ asset('img/logo/LogoCuadrado.png') }}" width="50" height="50" alt="">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

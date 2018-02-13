@@ -1,33 +1,8 @@
 @extends('layouts.app')
-
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('custom/css/categoria.css') }}">
+@endsection
 @section('content')
-    <style>
-        .categoria {
-            background: #3dc7be;
-            color: white;
-            padding: 8px 16px 8px 16px;
-            border-radius: 0px;
-            font-size: 14px;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-        .author {
-            color: #f75940 !important;
-        }
-        .card {
-            box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-            background-color: transparent !important;
-        }
-        .card > a {
-            color: #424242;
-        }
-        .author {
-            color: #2ca02c;
-        }
-        .display-4, .lead {
-            color: #FFF !important;
-        }
-    </style>
     <div class="container mt-4">
         <div class="row">
             <div class="col-12">
@@ -101,6 +76,7 @@
                             </a>
                         </div>
                     @endforeach
+                    {{ $posts->links('layouts.pagination') }}
                 @else
                     <h2 class="fm-7">Al parecer no han publicado posts en esta categoria.</h2>
                 @endif
@@ -110,7 +86,7 @@
                 <hr>
                 @foreach($subcategorias as $serie)
                 <a href="{{ url('/serie/'.$serie->id_subcategoria.'/'.str_replace(" ", "-", $serie->subcategoria)) }}">
-                    <div class="card">
+                    <div class="card mb-3">
                         <img class="card-img-top" src="{{ url('img/subcategorias/'.$serie->id_subcategoria.'.jpg') }}" alt="{{ $serie->subcategoria }}">
                         <div class="card-body">
                             <h4 class="fm-7">{{ $serie->subcategoria }}</h4>

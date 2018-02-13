@@ -1,43 +1,9 @@
 @extends('layouts.app')
 
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('custom/css/serie.css') }}">
+@endsection
 @section('content')
-    <style>
-        .categoria {
-            background: #3dc7be;
-            color: white;
-            padding: 8px 16px 8px 16px;
-            border-radius: 0px;
-            font-size: 14px;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-        .author {
-            color: #f75940 !important;
-        }
-        .card {
-            box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-            background-color: transparent !important;
-        }
-        .card > a {
-            color: #424242;
-        }
-        .author {
-            color: #2ca02c;
-        }
-        .display-4, .lead {
-            color: #FFF !important;
-        }
-        .list-group {
-            background-color: white;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-        }
-        .list-group-item {
-            border: 0px !important;
-        }
-        .list-group > .list-group-item > a {
-            color: #424242;
-        }
-    </style>
     <div class="container mt-4">
         <div class="row">
             <div class="col-12">
@@ -111,8 +77,9 @@
                             </a>
                         </div>
                     @endforeach
+                    {{ $posts->links('layouts.pagination') }}
                 @else
-                    <h2 class="fm-7">Al parecer no han publicado posts en esta categoria.</h2>
+                    <h2 class="fm-7">Al parecer no han publicado posts en esta serie.</h2>
                 @endif
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
