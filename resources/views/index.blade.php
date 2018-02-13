@@ -54,24 +54,22 @@
                             </script>
                         </div>
                     @endif
-                    @if($key >= 1)
-                        <div class="card mb-4">
-                            <a href="{{ url('/post/'.$nueva->id_post.'/'.str_replace(" ", "-", $nueva->titulo)) }}">
-                                <img class="card-img-top" src="{{ asset('img/posts/'.$nueva->id_post.'.jpg') }}" alt="{{ $nueva->descripcion_foto }}">
-                                <div class="card-body">
-                                    <p><span class="categoria">{{ $nueva->categoria }}</span></p>
-                                    <h4 class="fm-7">{{ $nueva->titulo }}</h4>
-                                    <p>
-                                        <span>Por:</span>
-                                        <span class="author fm-7">{{ $nueva->name }}</span>
-                                        <strong>|</strong>
-                                        {{ formatoFechaMesCompleto($nueva->created_at, "-") }}
-                                    </p>
-                                    <p class="card-text text-justify">{{ $nueva->breve_descripcion }}</p>
-                                </div>
-                            </a>
-                        </div>
-                    @endif
+                    <div class="card mb-4">
+                        <a href="{{ url('/post/'.$nueva->id_post.'/'.str_replace(" ", "-", $nueva->titulo)) }}">
+                            <img class="card-img-top" src="{{ asset('img/posts/'.$nueva->id_post.'.jpg') }}" alt="{{ $nueva->descripcion_foto }}">
+                            <div class="card-body">
+                                <p><span class="categoria">{{ $nueva->categoria }}</span></p>
+                                <h4 class="fm-7">{{ $nueva->titulo }}</h4>
+                                <p>
+                                    <span>Por:</span>
+                                    <span class="author fm-7">{{ $nueva->name }}</span>
+                                    <strong>|</strong>
+                                    {{ formatoFechaMesCompleto($nueva->created_at, "-") }}
+                                </p>
+                                <p class="card-text text-justify">{{ $nueva->breve_descripcion }}</p>
+                            </div>
+                        </a>
+                    </div>
                 @endforeach
                 <hr>
                 {{ $nuevas->links('layouts.pagination') }}
