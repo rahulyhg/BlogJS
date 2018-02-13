@@ -120,17 +120,17 @@
                 </div>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link icon-social icon-social-twitter" href="#" target="_blank">
+                        <a class="nav-link icon-social icon-social-twitter" href="https://twitter.com/JordySantm94" target="_blank">
                             <i class="fab fa-twitter-square"></i>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link icon-social icon-social-google" href="#" target="_blank">
+                        <a class="nav-link icon-social icon-social-google" href="https://plus.google.com/+JordySantamaria1994?hl=es" target="_blank">
                             <i class="fab fa-google-plus"></i>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link icon-social icon-social-instagram" href="#" target="_blank">
+                        <a class="nav-link icon-social icon-social-instagram" href="https://www.instagram.com/jordysantamaria/" target="_blank">
                             <i class="fab fa-instagram"></i>
                         </a>
                     </li>
