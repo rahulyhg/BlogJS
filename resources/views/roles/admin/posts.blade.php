@@ -39,6 +39,7 @@
                                     <td>{{ $post->titulo }}</td>
                                     <td>{{ $post->breve_descripcion }}</td>
                                     <td>
+                                        <button class="btn btn-primary" data-toggle="modal" data-target="#editarPost" v-on:click="editarPost({{ $post->id_post }}, {{ $post->id_subcategoria }}, '{{ $post->titulo }}', '{{ $post->descripcion_foto }}', '{{ $post->breve_descripcion }}', {{ $post->descripcion }}, '{{ $post->etiquetas }}')"></button>
                                         <button class="btn btn-primary" data-toggle="modal" data-target="#editarPost" onclick="editarPost({{ $post->id_post }}, {{ $post->id_subcategoria }}, '{{ $post->titulo }}', '{{ $post->descripcion_foto }}', '{{ $post->breve_descripcion }}', {{ $post->descripcion }}, '{{ $post->etiquetas }}')">
                                             <i class="fas fa-pencil-alt"></i>
                                         </button>
@@ -179,7 +180,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="titulo">Titulo</label>
-                                <input type="text" name="titulo" class="form-control{{ $errors->has('titulo') ? ' is-invalid' : '' }} titulo_e" value="{{ old('titulo') }}" autocomplete="off">
+                                <input type="text" name="titulo" class="form-control{{ $errors->has('titulo') ? ' is-invalid' : '' }} titulo_e" v-model="editarTitulo" autocomplete="off">
                                 @if($errors->has('titulo'))
                                     <div class="invalid-feedback">
                                         <strong>{{ $errors->first('titulo') }}</strong>
@@ -276,7 +277,7 @@
 
         }
 
-        function editarPost(id_post, id_subcategoria, titulo, descripcion_foto, breve_desc, descripcion, etiquetas) {
+        /*function editarPost(id_post, id_subcategoria, titulo, descripcion_foto, breve_desc, descripcion, etiquetas) {
 
             $(".id_post").val(id_post);
             $(".subcategoria_e option[value='"+id_subcategoria+"']").attr("selected", true);
@@ -287,7 +288,23 @@
             $(".etiquetas_e").val(jQuery.parseJSON(etiquetas));
             $('.img_previa_editar').attr('src', 'http://localhost:8000/img/posts/'+id_post+'.jpg');
 
-        }
+        }*/
+
+        new Vue({
+            el: '#app',
+            data: {
+                editarTitulo : ''
+            },
+            methods: {
+                editarPost: function (id_post, id_subcategoria, titulo, descripcion_foto, breve_desc, descripcion, etiquetas) {
+
+                    this.editarTitulo = titulo;
+
+                    $(".subcategoria_e option[value='"+id_subcategoria+"']").attr("selected", true);
+                    CKEDITOR.instances['editor2'].setData(descripcion);
+                }
+            }
+        });
 
         $(".imagen_post").change(function(){
             vistaPrevia(this);
