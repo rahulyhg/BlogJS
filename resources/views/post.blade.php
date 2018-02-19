@@ -49,8 +49,7 @@
                     <div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 p-0 align-self-center">
                         <p class="fm-9">{{ strtoupper($post->name) }}</p>
                         <p>
-                            Ingeniero en Tecnologias de la Información y Comunicación, aficionado a las nuevas tecnologias, amante de los videojuegos al igual que de las peliculas.
-                            Me encanta la Programación, aun más cuando se trata de aprender algo nuevo.
+                            {{ $post->info }}
                         </p>
                         <p>
                             <span class="fm-7">Actualizada el: </span>

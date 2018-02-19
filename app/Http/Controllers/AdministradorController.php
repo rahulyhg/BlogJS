@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -346,5 +347,39 @@ class AdministradorController extends Controller
             'list_group_item' => 5,
             'newsletters'     => Newsletter::all(),
         ]);
+    }
+
+    public function configuracion()
+    {
+        return view('roles.admin.configuracion', [
+            'list_group_item' => 6,
+            'info' => User::all()->first()
+        ]);
+    }
+
+    public function actualizarInfo(Request $request)
+    {
+        $this->validate($request, [
+            'nombre' => 'required|min:5|max:191',
+            'info'   => 'required'
+        ],
+        [
+            'nombre.required' => 'Es necesario ingresar tu nombre completo.',
+            'nombre.min'      => 'Tu nombre no puede tener menos de 5 caracteres.',
+            'nombre.max'      => 'Tu nombre no puede exceder los 191 caracteres.',
+            'info.required'   => 'Es necesario ingresar informacion de tu perfil.'
+        ]);
+
+        $user = User::where('id', Auth::user()->id)->first();
+
+        $user->name = $request->input('nombre');
+        $user->info = $request->input('info');
+        $user->updated_at = date('Y-m-d H:i:s');
+
+        $user->save();
+
+        $request->session()->flash("status", "Se actualizo tu información correctamente.");
+
+        return redirect('/admin/configuracion');
     }
 }

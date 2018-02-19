@@ -18,9 +18,6 @@ Route::get('/serie/{id}/{serie}', 'SerieController@index');
 /* Rutas de Autenticación */
 Auth::routes();
 
-/* Generar Password */
-Route::get('hash', 'AdministradorController@generarPassword');
-
 Route::group(['middleware' => ['administrador.redirect']], function () {
 
     /* Rutas de Posts */
@@ -47,4 +44,7 @@ Route::group(['middleware' => ['administrador.redirect']], function () {
     /* Rutas del Newsletter */
     Route::get('admin/newsletter', 'AdministradorController@newsletter');
 
+    /* Rutas de Configuración del Usuario */
+    Route::get('admin/configuracion', 'AdministradorController@configuracion');
+    Route::post('admin/configuracion', 'AdministradorController@actualizarInfo');
 });

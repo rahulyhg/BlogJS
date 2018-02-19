@@ -37,7 +37,7 @@
                                 <tr>
                                     <td>{{ $subcategoria->subcategoria }}</td>
                                     <td>
-                                        <button class="btn btn-primary" data-toggle="modal" data-target="#editarSubcategoria" onclick="editarSubcategoria({{ $subcategoria->id_subcategoria }}, {{ $subcategoria->id_categoria }}, '{{ $subcategoria->subcategoria }}')">
+                                        <button class="btn btn-primary" data-toggle="modal" data-target="#editarSubcategoria" v-on:click="editarSubcategoria({{ $subcategoria->id_subcategoria }}, {{ $subcategoria->id_categoria }}, '{{ $subcategoria->subcategoria }}')">
                                             <i class="fas fa-pencil-alt"></i>
                                         </button>
                                     </td>
@@ -102,7 +102,7 @@
                             </div>
                             <div class="input-group mb-2">
                                 <label class="custom-file w-100">
-                                    <input type="file" class="custom-file-input imagen_post" name="foto">
+                                    <input type="file" class="custom-file-input" name="foto" v-on:change="cambiarImagen">
                                     <span class="custom-file-control"></span>
                                 </label>
                             </div>
@@ -133,7 +133,7 @@
                     @if(count($categorias) > 0)
                         <form action="{{ url('/admin/editar-subcategorias') }}" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
-                            <input type="hidden" class="id_subcategoria" name="id">
+                            <input type="hidden" v-model="editarIdSubcategoria" name="id">
                             <div class="form-group">
                                 <label for="categoria">Categoria</label>
                                 <select class="form-control categoria" name="categoria">
@@ -144,7 +144,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="titulo">Subcategoria</label>
-                                <input type="text" name="subcategoria" class="form-control{{ $errors->has('subcategoria') ? ' is-invalid' : '' }} subcategoria" value="{{ old('subcategoria') }}" autocomplete="off">
+                                <input type="text" name="subcategoria" class="form-control{{ $errors->has('subcategoria') ? ' is-invalid' : '' }}" v-model="editSubcategoria" value="{{ old('subcategoria') }}" autocomplete="off">
                                 @if($errors->has('subcategoria'))
                                     <div class="invalid-feedback">
                                         <strong>{{ $errors->first('subcategoria') }}</strong>
@@ -153,7 +153,7 @@
                             </div>
                             <div class="input-group mb-2">
                                 <label class="custom-file w-100">
-                                    <input type="file" class="custom-file-input imagen_post_editar" name="foto">
+                                    <input type="file" class="custom-file-input" name="foto" v-on:change="imagenPostEditar">
                                     <span class="custom-file-control"></span>
                                 </label>
                             </div>
@@ -173,56 +173,5 @@
     </div>
 @endsection
 @section('scripts')
-    <script>
-        function editarSubcategoria(id_subcategoria, id_categoria, subcategoria) {
-            $(".id_subcategoria").val(id_subcategoria);
-            $(".categoria option[value='"+id_categoria+"']").attr("selected", true);
-            $(".subcategoria").val(subcategoria);
-            $('.img_previa_editar').attr('src', 'http://localhost:8000/img/subcategorias/'+id_subcategoria+'.jpg');
-        }
-
-        function vistaPrevia(input) {
-
-            if (input.files && input.files[0]) {
-
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-
-                    $('.img_previa').attr('src', e.target.result);
-
-                }
-
-                reader.readAsDataURL(input.files[0]);
-
-            }
-
-        }
-
-        function vistaPreviaEditar(input) {
-
-            if (input.files && input.files[0]) {
-
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-
-                    $('.img_previa_editar').attr('src', e.target.result);
-
-                }
-
-                reader.readAsDataURL(input.files[0]);
-
-            }
-
-        }
-
-        $(".imagen_post").change(function(){
-            vistaPrevia(this);
-        });
-
-        $(".imagen_post_editar").change(function(){
-            vistaPreviaEditar(this);
-        });
-    </script>
+    <script type="text/javascript" src="{{ asset('custom/js/roles/admin/subcategorias.js') }}"></script>
 @endsection

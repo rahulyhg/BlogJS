@@ -21,6 +21,7 @@ class Agente extends Model
         $query = DB::table($this->table)
                 ->select('*', DB::raw('count(id_agente) as Total'))
                 ->groupBy('url')
+                ->orderBy('Total', 'DESC')
                 ->paginate(5);
 
         return $query;

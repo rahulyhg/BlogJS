@@ -37,7 +37,7 @@
                                 <tr>
                                     <td>{{ $categoria->categoria }}</td>
                                     <td>
-                                        <button class="btn btn-primary" data-toggle="modal" data-target="#editarCategoria" onclick="editarCategoria({{ $categoria->id_categoria }}, '{{ $categoria->categoria }}')">
+                                        <button class="btn btn-primary" v-on:click="editarCategoria({{ $categoria->id_categoria }}, '{{ $categoria->categoria }}')" data-toggle="modal" data-target="#editarCategoria">
                                             <i class="fas fa-pencil-alt"></i>
                                         </button>
                                     </td>
@@ -91,7 +91,7 @@
                         </div>
                         <div class="input-group mb-2">
                             <label class="custom-file w-100">
-                                <input type="file" class="custom-file-input imagen_post" name="foto">
+                                <input type="file" class="custom-file-input" name="foto" v-on:change="cambiarImagen">
                                 <span class="custom-file-control"></span>
                             </label>
                         </div>
@@ -114,10 +114,10 @@
                 <div class="modal-body">
                     <form action="{{ url('/admin/editar-categorias') }}" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
-                        <input type="hidden" name="id" class="id_categoria">
+                        <input type="hidden" name="id" v-model="editarIdCategoria">
                         <div class="form-group">
                             <label for="categoria">Categoria</label>
-                            <input type="text" name="categoria" class="form-control{{ $errors->has('categoria') ? ' is-invalid' : '' }} categoria" value="{{ old('categoria') }}" autocomplete="off">
+                            <input type="text" name="categoria" class="form-control{{ $errors->has('categoria') ? ' is-invalid' : '' }}" v-model="editCategoria" value="{{ old('categoria') }}" autocomplete="off">
                             @if($errors->has('categoria'))
                                 <div class="invalid-feedback">
                                     <strong>{{ $errors->first('categoria') }}</strong>
@@ -126,7 +126,7 @@
                         </div>
                         <div class="input-group mb-2">
                             <label class="custom-file w-100">
-                                <input type="file" class="custom-file-input imagen_post_editar" name="foto">
+                                <input type="file" class="custom-file-input" name="foto" v-on:change="imagenPostEditar">
                                 <span class="custom-file-control"></span>
                             </label>
                         </div>
@@ -139,55 +139,5 @@
     </div>
 @endsection
 @section('scripts')
-    <script>
-        function editarCategoria(id, categoria) {
-            $(".id_categoria").val(id);
-            $(".categoria").val(categoria);
-            $('.img_previa_editar').attr('src', 'http://localhost:8000/img/categorias/'+id+'.jpg');
-        }
-
-        function vistaPrevia(input) {
-
-            if (input.files && input.files[0]) {
-
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-
-                    $('.img_previa').attr('src', e.target.result);
-
-                }
-
-                reader.readAsDataURL(input.files[0]);
-
-            }
-
-        }
-
-        function vistaPreviaEditar(input) {
-
-            if (input.files && input.files[0]) {
-
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-
-                    $('.img_previa_editar').attr('src', e.target.result);
-
-                }
-
-                reader.readAsDataURL(input.files[0]);
-
-            }
-
-        }
-
-        $(".imagen_post").change(function(){
-            vistaPrevia(this);
-        });
-
-        $(".imagen_post_editar").change(function(){
-            vistaPreviaEditar(this);
-        });
-    </script>
+    <script type="text/javascript" src="{{ asset('custom/js/roles/admin/categorias.js') }}"></script>
 @endsection

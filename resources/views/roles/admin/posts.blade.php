@@ -29,6 +29,7 @@
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <tr>
+                                <th></th>
                                 <th>Titulo</th>
                                 <th>Descripción</th>
                                 <th></th>
@@ -36,11 +37,15 @@
                             </tr>
                             @foreach($posts as $post)
                                 <tr>
+                                    <td>
+                                        <a class="btn btn-outline-dark" href="{{ url('/post/'.$post->id_post.'/'.str_replace(" ", "-", $post->titulo)) }}" target="_blank">
+                                            <i class="fas fa-share"></i>
+                                        </a>
+                                    </td>
                                     <td>{{ $post->titulo }}</td>
                                     <td>{{ $post->breve_descripcion }}</td>
                                     <td>
-                                        <button class="btn btn-primary" data-toggle="modal" data-target="#editarPost" v-on:click="editarPost({{ $post->id_post }}, {{ $post->id_subcategoria }}, '{{ $post->titulo }}', '{{ $post->descripcion_foto }}', '{{ $post->breve_descripcion }}', {{ $post->descripcion }}, '{{ $post->etiquetas }}')"></button>
-                                        <button class="btn btn-primary" data-toggle="modal" data-target="#editarPost" onclick="editarPost({{ $post->id_post }}, {{ $post->id_subcategoria }}, '{{ $post->titulo }}', '{{ $post->descripcion_foto }}', '{{ $post->breve_descripcion }}', {{ $post->descripcion }}, '{{ $post->etiquetas }}')">
+                                        <button class="btn btn-primary" data-toggle="modal" data-target="#editarPost" v-on:click="editarPost({{ $post->id_post }}, {{ $post->id_subcategoria }}, '{{ $post->titulo }}', '{{ $post->descripcion_foto }}', '{{ $post->breve_descripcion }}', {{ $post->descripcion }}, '{{ $post->etiquetas }}')">
                                             <i class="fas fa-pencil-alt"></i>
                                         </button>
                                     </td>
@@ -103,7 +108,7 @@
                             </div>
                             <div class="input-group mb-2">
                                 <label class="custom-file w-100">
-                                    <input type="file" class="custom-file-input imagen_post" name="foto">
+                                    <input type="file" class="custom-file-input" name="foto" v-on:change="cambiarImagen">
                                     <span class="custom-file-control"></span>
                                 </label>
                             </div>
@@ -169,7 +174,7 @@
                 <div class="modal-body">
                         <form action="{{ url('/admin/editar-posts') }}" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
-                            <input type="hidden" name="id" class="id_post">
+                            <input type="hidden" name="id" v-model="editarIdPost">
                             <div class="form-group">
                                 <label for="subcategoria">Subcategoria</label>
                                 <select class="form-control subcategoria_e" name="subcategoria">
@@ -180,7 +185,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="titulo">Titulo</label>
-                                <input type="text" name="titulo" class="form-control{{ $errors->has('titulo') ? ' is-invalid' : '' }} titulo_e" v-model="editarTitulo" autocomplete="off">
+                                <input type="text" name="titulo" class="form-control{{ $errors->has('titulo') ? ' is-invalid' : '' }}" v-model="editarTitulo" autocomplete="off">
                                 @if($errors->has('titulo'))
                                     <div class="invalid-feedback">
                                         <strong>{{ $errors->first('titulo') }}</strong>
@@ -189,14 +194,14 @@
                             </div>
                             <div class="input-group mb-2">
                                 <label class="custom-file w-100">
-                                    <input type="file" class="custom-file-input imagen_post_editar" name="foto">
+                                    <input type="file" class="custom-file-input" name="foto" v-on:change="imagenPostEditar">
                                     <span class="custom-file-control"></span>
                                 </label>
                             </div>
                             <img class="img-fluid img_previa_editar mt-2 mb-2 w-100" src="#" alt="Es necesario subir una imagen.">
                             <div class="form-group mt-3">
                                 <label for="desc_imagen">Descripción de la Imagen</label>
-                                <input type="desc_imagen" name="desc_imagen" class="form-control{{ $errors->has('desc_imagen') ? ' is-invalid' : '' }} descrip_foto" value="{{ old('desc_imagen') }}" autocomplete="off">
+                                <input type="desc_imagen" name="desc_imagen" class="form-control{{ $errors->has('desc_imagen') ? ' is-invalid' : '' }}" v-model="editarDescripcionFoto" value="{{ old('desc_imagen') }}" autocomplete="off">
                                 @if($errors->has('desc_imagen'))
                                     <div class="invalid-feedback">
                                         <strong>{{ $errors->first('desc_imagen') }}</strong>
@@ -205,7 +210,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="breve_desc">Breve Descripción</label>
-                                <textarea name="breve_desc" class="form-control{{ $errors->has('breve_desc') ? ' is-invalid' : '' }} breve_desc_e">{{ old('breve_desc') }}</textarea>
+                                <textarea name="breve_desc" class="form-control{{ $errors->has('breve_desc') ? ' is-invalid' : '' }}" v-model="editarBreveDescripcion">{{ old('breve_desc') }}</textarea>
                                 @if($errors->has('breve_desc'))
                                     <div class="invalid-feedback">
                                         <strong>{{ $errors->first('breve_desc') }}</strong>
@@ -223,7 +228,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="etiquetas">Etiquetas</label>
-                                <textarea name="etiquetas" class="form-control{{ $errors->has('etiquetas') ? ' is-invalid' : '' }} etiquetas_e">{{ old('etiquetas') }}</textarea>
+                                <textarea name="etiquetas" class="form-control{{ $errors->has('etiquetas') ? ' is-invalid' : '' }}" v-model="editarEtiquetas">{{ old('etiquetas') }}</textarea>
                                 @if($errors->has('etiquetas'))
                                     <div class="invalid-feedback">
                                         <strong>{{ $errors->first('etiquetas') }}</strong>
@@ -239,80 +244,5 @@
 @endsection
 @section('scripts')
     <script type="text/javascript" src="{{ asset('ckeditor/ckeditor.js') }}"></script>
-    <script type="text/javascript">
-
-        function vistaPrevia(input) {
-
-            if (input.files && input.files[0]) {
-
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-
-                    $('.img_previa').attr('src', e.target.result);
-
-                }
-
-                reader.readAsDataURL(input.files[0]);
-
-            }
-
-        }
-
-        function vistaPreviaEditar(input) {
-
-            if (input.files && input.files[0]) {
-
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-
-                    $('.img_previa_editar').attr('src', e.target.result);
-
-                }
-
-                reader.readAsDataURL(input.files[0]);
-
-            }
-
-        }
-
-        /*function editarPost(id_post, id_subcategoria, titulo, descripcion_foto, breve_desc, descripcion, etiquetas) {
-
-            $(".id_post").val(id_post);
-            $(".subcategoria_e option[value='"+id_subcategoria+"']").attr("selected", true);
-            $(".titulo_e").val(titulo);
-            $(".descrip_foto").val(descripcion_foto);
-            $(".breve_desc_e").val(breve_desc);
-            CKEDITOR.instances['editor2'].setData(descripcion);
-            $(".etiquetas_e").val(jQuery.parseJSON(etiquetas));
-            $('.img_previa_editar').attr('src', 'http://localhost:8000/img/posts/'+id_post+'.jpg');
-
-        }*/
-
-        new Vue({
-            el: '#app',
-            data: {
-                editarTitulo : ''
-            },
-            methods: {
-                editarPost: function (id_post, id_subcategoria, titulo, descripcion_foto, breve_desc, descripcion, etiquetas) {
-
-                    this.editarTitulo = titulo;
-
-                    $(".subcategoria_e option[value='"+id_subcategoria+"']").attr("selected", true);
-                    CKEDITOR.instances['editor2'].setData(descripcion);
-                }
-            }
-        });
-
-        $(".imagen_post").change(function(){
-            vistaPrevia(this);
-        });
-
-        $(".imagen_post_editar").change(function(){
-            vistaPreviaEditar(this);
-        });
-
-    </script>
+    <script type="text/javascript" src="{{ asset('custom/js/roles/admin/posts.js') }}"></script>
 @endsection

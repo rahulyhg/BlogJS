@@ -44,6 +44,15 @@
             </a>
         @endif
     </li>
+    <li class="list-group-item {{ ($item == 6) ? 'active' : ''  }}">
+        @if($item != 6)
+            <a href="{{ url('/admin/configuracion') }}">
+                @endif
+                Mi Configuración
+                @if($item != 6)
+            </a>
+        @endif
+    </li>
     <li class="list-group-item">
         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             Cerrar Sesión

@@ -21,7 +21,7 @@ class Post extends Model
     public function posts($limit, $where, $type)
     {
         $result = DB::table($this->table)
-            ->selectRaw("post.id_post, post.titulo, post.descripcion_foto, post.breve_descripcion, post.descripcion, post.etiquetas, post.created_at, categoria.id_categoria, categoria.categoria, users.name, subcategoria.subcategoria")
+            ->selectRaw("post.id_post, post.titulo, post.descripcion_foto, post.breve_descripcion, post.descripcion, post.etiquetas, post.created_at, categoria.id_categoria, categoria.categoria, users.name, users.info, subcategoria.subcategoria")
             ->join('subcategoria', 'post.id_subcategoria', '=', 'subcategoria.id_subcategoria')
             ->join('categoria', 'categoria.id_categoria', '=', 'subcategoria.id_categoria')
             ->join('users', 'post.id_usuario', '=', 'users.id')

@@ -40,8 +40,10 @@
                                 <tr>
                                     <td>{{ $estadistica->navegador }}</td>
                                     <td>{{ $estadistica->sistema_operativo }}</td>
-                                    <td>{{ $estadistica->lenguaje }}</td>
-                                    <td>{{ $estadistica->url }}</td>
+                                    <td>{{ limpiarString(["[", "]", "\""], "", $estadistica->lenguaje) }}</td>
+                                    <td>
+                                        <a href="{{ $estadistica->url }}" target="_blank">{{ $estadistica->url }}</a>
+                                    </td>
                                     <td>{{ formatoFechaMesCompleto($estadistica->created_at, "-") }}</td>
                                     <td>{{ $estadistica->Total }}</td>
                                 </tr>
