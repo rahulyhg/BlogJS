@@ -58,7 +58,7 @@
         <meta name="organization" content="Noticias, Peliculas, Gameplays y mucho más!" />
         <meta name="locality" content="Mexico, Puebla" />
         <meta name="revisit-after" content="1 days" />
-        <meta name="robots" content="INDEX,FOLLOW,NOODP" />
+        <meta name="robots" content="INDEX,FOLLOW" />
 
         <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />

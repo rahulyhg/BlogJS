@@ -48,3 +48,10 @@ Route::group(['middleware' => ['administrador.redirect']], function () {
     Route::get('admin/configuracion', 'AdministradorController@configuracion');
     Route::post('admin/configuracion', 'AdministradorController@actualizarInfo');
 });
+
+/* Rutas de Sitemap XML */
+
+Route::get('/sitemap.xml', 'SitemapController@index');
+Route::get('/sitemap/categorias.xml', 'SitemapController@categorias');
+Route::get('/sitemap/series.xml', 'SitemapController@series');
+Route::get('/sitemap/posts.xml', 'SitemapController@posts');
