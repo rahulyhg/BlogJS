@@ -9,6 +9,7 @@ use Jenssegers\Agent\Agent;
 use App\Agente;
 use App\Post;
 use App\Categoria;
+use App\Subcategoria;
 use App\Newsletter;
 
 class IndexController extends Controller
@@ -38,10 +39,10 @@ class IndexController extends Controller
         ];
 
         return view('index', [
-            'jumbotron'  => $this->post->posts(1, null, false),
-            'nuevas'     => $this->post->posts(5, "AND post.id_post <> (SELECT id_post FROM post ORDER BY id_post DESC LIMIT 1)", true),
-            'categorias' => Categoria::where('activo', 1)->get(),
-            'metas'      => $metas,
+            'jumbotron'     => $this->post->posts(1, null, false),
+            'nuevas'        => $this->post->posts(5, "AND post.id_post <> (SELECT id_post FROM post ORDER BY id_post DESC LIMIT 1)", true),
+            'categorias'    => Categoria::where('activo', 1)->get(),
+            'metas'         => $metas,
         ]);
     }
 

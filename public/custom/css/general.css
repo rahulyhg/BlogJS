@@ -5,11 +5,29 @@ body, * {
     font-weight: 400;
 }
 
+.custom-footer {
+    background-color: #334252;
+    color: #FFFFFF;
+}
+
+.custom-footer-alt {
+    background-color: #3DC7BE;
+    color: #000;
+}
+
+/* Buttons Colors */
+
+.btn-myprimary {
+    background-color: #334252;
+    color: #FFF;
+}
+
 th {
     font-family: 'Muli', sans-serif;
     font-weight: 700;
 }
 
+/* Estilos de Fuentes */
 .fm-3 {
     font-family: 'Muli', sans-serif;
     font-weight: 300;
@@ -30,6 +48,17 @@ th {
     font-weight: 900;
 }
 
+/* Tamaño de Fuentes */
+.fs-footer {
+    font-size: 20px;
+    padding: 0px;
+    margin: 10px;
+    color: #000;
+}
+.color-blanco, .color-blanco:hover, .color-blanco:active {
+    color: #3DC7BE;
+}
+
 /* Estilos NavBar */
 .icon-social {
     font-size: 30px;
@@ -44,4 +73,9 @@ th {
 }
 .icon-social-instagram {
     color : #AB47BC !important;
+}
+
+/* Estilos de Footer */
+.footer-twitter, .footer-google, .footer-instagram {
+    color : #3DC7BE;
 }

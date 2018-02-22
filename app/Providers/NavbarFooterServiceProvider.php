@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 
 use View;
 use App\Categoria;
+use App\Subcategoria;
 use App\Agente;
 
 class NavbarFooterServiceProvider extends ServiceProvider
@@ -19,7 +20,8 @@ class NavbarFooterServiceProvider extends ServiceProvider
     {
         view()->composer('layouts.app', function($view){
             $view->with([
-                'categorias' => Categoria::where('activo', 1)->get(),
+                'categorias'    => Categoria::where('activo', 1)->get(),
+                'subcategorias' => Subcategoria::where('activo', 1)->take(10)->get()
             ]);
         });
     }

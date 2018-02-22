@@ -140,6 +140,114 @@
         @yield('content')
     </div>
 
+    <!-- Footer -->
+    <div class="container-fluid mt-3 p-5 custom-footer-alt">
+        <div class="row-fluid">
+            <h3 class="text-center fm-7">Jordy Santamaria</h3>
+        </div>
+        <div class="row pt-4">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 text-center">
+                <h5 class="fm-7">
+                    <i class="far fa-newspaper"></i>
+                    CATEGORIAS
+                </h5>
+                @foreach($categorias as $categoria)
+                    <p>
+                        <a class="fs-footer" href="{{ url('/categoria/'.$categoria->id_categoria.'/'.$categoria->categoria) }}">{{ $categoria->categoria }}</a>
+                    </p>
+                @endforeach
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 text-center">
+                <h5 class="fm-7">
+                    <i class="far fa-newspaper"></i>
+                    SERIES
+                </h5>
+                @foreach($subcategorias as $subcategoria)
+                    <p>
+                        <a class="fs-footer" href="{{ url('/serie/'.$subcategoria->id_subcategoria.'/'.$subcategoria->subcategoria) }}">{{ $subcategoria->subcategoria }}</a>
+                    </p>
+                @endforeach
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 text-center">
+                <h5 class="fm-7">
+                    <i class="far fa-envelope-open"></i>
+                    NEWSLETTER
+                </h5>
+                <form action="{{ url('/') }}" method="POST">
+                    <p>Suscribete y recibe mis ultimos post.</p>
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                    @if(count($errors))
+                        <div class="alert alert-danger">
+                            <strong>Oops!</strong>:
+                            <br/>
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    {{ csrf_field() }}
+                    <input type="email" name="correo" class="form-control" placeholder="Ingresa tu correo electronico aquí.">
+                    <button type="submit" class="btn btn-myprimary btn-block mt-3 fm-7">
+                        ¡QUIERO SUSCRIBIRME!
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid p-3 custom-footer">
+        <div class="row pt-4">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 text-center">
+                <h5 class="fm-7">
+                    <i class="fas fa-map-marker-alt"></i>
+                    LOCALIZACIÓN
+                </h5>
+                <h5 class="fm-4">Puebla, Pue.</h5>
+                <h5 class="fm-4">México</h5>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 text-center">
+                <h5 class="fm-7">
+                    <i class="fas fa-thumbs-up"></i>
+                    SIGUEME EN MIS REDES SOCIALES
+                </h5>
+                <div class="btn-group">
+                    <a class="nav-link icon-social footer-twitter" href="https://twitter.com/JordySantm94" target="_blank">
+                        <i class="fab fa-twitter-square"></i>
+                    </a>
+                </div>
+                <div class="btn-group">
+                    <a class="nav-link icon-social footer-google" href="https://plus.google.com/+JordySantamaria1994?hl=es" target="_blank">
+                        <i class="fab fa-google-plus"></i>
+                    </a>
+                </div>
+                <div class="btn-group">
+                    <a class="nav-link icon-social footer-instagram" href="https://www.instagram.com/jordysantamaria/" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 text-center">
+                <h5 class="fm-7">
+                    <i class="fas fa-envelope"></i>
+                    CONTACTAME
+                </h5>
+                <h5 class="fm-4">
+                    <a class="color-blanco" href="mailto:santmjoy@gmail.com">
+                    santmjoy@gmail.com
+                    </a>
+                </h5>
+            </div>
+        </div>
+        <div class="row-fluid pt-4">
+            <h6 class="text-center fm-4">Copyright © Jordy Santamaria 2018</h6>
+        </div>
+    </div>
+
     <!-- Scripts -->
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>

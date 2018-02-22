@@ -9,7 +9,9 @@
         "fideloper/proxy": "~3.3",
         "jenssegers/agent": "^2.6",
         "laravel/framework": "5.5.*",
-        "laravel/tinker": "~1.0"
+        "laravel/tinker": "~1.0",
+        "spatie/laravel-sitemap": "^4.0",
+        "watson/sitemap": "^2.0"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
