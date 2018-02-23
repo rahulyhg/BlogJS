@@ -1,7 +1,16 @@
 <ul class="list-group">
+    <li class="list-group-item {{ ($item == 0) ? 'active' : '' }}">
+        @if($item != 0)
+            <a href="{{ url('/admin/posts') }}">
+                @endif
+                Nuevo Post
+                @if($item != 0)
+            </a>
+        @endif
+    </li>
     <li class="list-group-item {{ ($item == 1) ? 'active' : ''  }}">
         @if($item != 1)
-            <a href="{{ url('/admin/posts') }}">
+            <a href="{{ url('/admin/administrar-posts') }}">
                 @endif
                 Posts
                 @if($item != 1)

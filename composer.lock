@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "033f6f21d16bc6c7d6229807a3afb34c",
+    "content-hash": "a9152d22b65624c7a7e0e5cc1dbb0be1",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -659,16 +659,16 @@
         },
         {
             "name": "jaybizzle/crawler-detect",
-            "version": "v1.2.58",
+            "version": "v1.2.59",
             "source": {
                 "type": "git",
                 "url": "https://github.com/JayBizzle/Crawler-Detect.git",
-                "reference": "7d5346fefb34033f7c08019dc57ceaa5d7a68dc0"
+                "reference": "8b371ed0fc16a3b13ebd5f00fd4a3ffb5420262e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/JayBizzle/Crawler-Detect/zipball/7d5346fefb34033f7c08019dc57ceaa5d7a68dc0",
-                "reference": "7d5346fefb34033f7c08019dc57ceaa5d7a68dc0",
+                "url": "https://api.github.com/repos/JayBizzle/Crawler-Detect/zipball/8b371ed0fc16a3b13ebd5f00fd4a3ffb5420262e",
+                "reference": "8b371ed0fc16a3b13ebd5f00fd4a3ffb5420262e",
                 "shasum": ""
             },
             "require": {
@@ -704,7 +704,7 @@
                 "crawlerdetect",
                 "php crawler detect"
             ],
-            "time": "2018-02-09T16:24:01+00:00"
+            "time": "2018-02-22T19:04:46+00:00"
         },
         {
             "name": "jenssegers/agent",
@@ -774,16 +774,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.5.34",
+            "version": "v5.5.35",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "1de7c0aec13eadbdddc2d1ba4019b064b2c6b966"
+                "reference": "b0e15382ecf51a082ef8b2ae0d26f62972f6c3ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/1de7c0aec13eadbdddc2d1ba4019b064b2c6b966",
-                "reference": "1de7c0aec13eadbdddc2d1ba4019b064b2c6b966",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/b0e15382ecf51a082ef8b2ae0d26f62972f6c3ce",
+                "reference": "b0e15382ecf51a082ef8b2ae0d26f62972f6c3ce",
                 "shasum": ""
             },
             "require": {
@@ -840,7 +840,7 @@
                 "illuminate/translation": "self.version",
                 "illuminate/validation": "self.version",
                 "illuminate/view": "self.version",
-                "tightenco/collect": "self.version"
+                "tightenco/collect": "<5.5.33"
             },
             "require-dev": {
                 "aws/aws-sdk-php": "~3.0",
@@ -904,7 +904,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-02-06T15:36:55+00:00"
+            "time": "2018-02-22T19:56:29+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -1824,16 +1824,16 @@
         },
         {
             "name": "spatie/browsershot",
-            "version": "3.16.1",
+            "version": "3.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/browsershot.git",
-                "reference": "699344871900c90fce753d58dfb3a9bd8ad8c63c"
+                "reference": "20352c99a96ff33d75ef6247273c54f6e5581369"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/browsershot/zipball/699344871900c90fce753d58dfb3a9bd8ad8c63c",
-                "reference": "699344871900c90fce753d58dfb3a9bd8ad8c63c",
+                "url": "https://api.github.com/repos/spatie/browsershot/zipball/20352c99a96ff33d75ef6247273c54f6e5581369",
+                "reference": "20352c99a96ff33d75ef6247273c54f6e5581369",
                 "shasum": ""
             },
             "require": {
@@ -1876,7 +1876,7 @@
                 "screenshot",
                 "webpage"
             ],
-            "time": "2018-02-08T09:12:26+00:00"
+            "time": "2018-02-22T12:28:51+00:00"
         },
         {
             "name": "spatie/crawler",
@@ -1989,16 +1989,16 @@
         },
         {
             "name": "spatie/image-optimizer",
-            "version": "1.0.11",
+            "version": "1.0.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/image-optimizer.git",
-                "reference": "12eacb85a70158f64d60f39d32a2a86d84ff6b89"
+                "reference": "73906c29290baf047727ba5c1df6d7a3f1e3df22"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/image-optimizer/zipball/12eacb85a70158f64d60f39d32a2a86d84ff6b89",
-                "reference": "12eacb85a70158f64d60f39d32a2a86d84ff6b89",
+                "url": "https://api.github.com/repos/spatie/image-optimizer/zipball/73906c29290baf047727ba5c1df6d7a3f1e3df22",
+                "reference": "73906c29290baf047727ba5c1df6d7a3f1e3df22",
                 "shasum": ""
             },
             "require": {
@@ -2034,7 +2034,7 @@
                 "image-optimizer",
                 "spatie"
             ],
-            "time": "2018-02-08T14:45:11+00:00"
+            "time": "2018-02-22T18:36:53+00:00"
         },
         {
             "name": "spatie/laravel-sitemap",
@@ -3801,16 +3801,16 @@
         },
         {
             "name": "phpspec/prophecy",
-            "version": "1.7.4",
+            "version": "1.7.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/prophecy.git",
-                "reference": "9f901e29c93dae4aa77c0bb161df4276f9c9a1be"
+                "reference": "dfd6be44111a7c41c2e884a336cc4f461b3b2401"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/9f901e29c93dae4aa77c0bb161df4276f9c9a1be",
-                "reference": "9f901e29c93dae4aa77c0bb161df4276f9c9a1be",
+                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/dfd6be44111a7c41c2e884a336cc4f461b3b2401",
+                "reference": "dfd6be44111a7c41c2e884a336cc4f461b3b2401",
                 "shasum": ""
             },
             "require": {
@@ -3860,7 +3860,7 @@
                 "spy",
                 "stub"
             ],
-            "time": "2018-02-11T18:49:29+00:00"
+            "time": "2018-02-19T10:16:54+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -4815,16 +4815,16 @@
         },
         {
             "name": "symfony/thanks",
-            "version": "v1.0.5",
+            "version": "v1.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/thanks.git",
-                "reference": "c757ee0c9dcfcc0e9e30fbbbdcadeb9dcc9aaaf4"
+                "reference": "9474ce305253c2f0bc20322ff8e9973cf25c9a94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/thanks/zipball/c757ee0c9dcfcc0e9e30fbbbdcadeb9dcc9aaaf4",
-                "reference": "c757ee0c9dcfcc0e9e30fbbbdcadeb9dcc9aaaf4",
+                "url": "https://api.github.com/repos/symfony/thanks/zipball/9474ce305253c2f0bc20322ff8e9973cf25c9a94",
+                "reference": "9474ce305253c2f0bc20322ff8e9973cf25c9a94",
                 "shasum": ""
             },
             "require": {
@@ -4854,7 +4854,7 @@
                 }
             ],
             "description": "Give thanks (in the form of a GitHub ⭐) to your fellow PHP package maintainers (not limited to Symfony components)!",
-            "time": "2018-01-26T10:44:34+00:00"
+            "time": "2018-02-02T13:47:40+00:00"
         },
         {
             "name": "theseer/tokenizer",

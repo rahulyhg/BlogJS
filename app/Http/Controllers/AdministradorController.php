@@ -29,6 +29,14 @@ class AdministradorController extends Controller
 
     public function posts()
     {
+        return view('roles.admin.nuevo_post', [
+            'list_group_item' => 0,
+            'subcategorias'   => Subcategoria::where('activo', self::ACTIVADO)->get(),
+        ]);
+    }
+
+    public function administrarPosts()
+    {
         return view('roles.admin.posts', [
             'list_group_item' => 1,
             'posts'           => Post::where('activo', self::ACTIVADO)->orderBy('id_post', 'DESC')->paginate(self::PAGINATE),

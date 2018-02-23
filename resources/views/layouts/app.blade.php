@@ -141,7 +141,7 @@
     </div>
 
     <!-- Footer -->
-    <div class="container-fluid mt-3 p-5 custom-footer-alt">
+    <!--div class="container-fluid mt-3 p-5 custom-footer-alt">
         <div class="row-fluid">
             <h3 class="text-center fm-7">Jordy Santamaria</h3>
         </div>
@@ -200,7 +200,7 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid p-3 custom-footer">
+    <div-- class="container-fluid p-3 custom-footer">
         <div class="row pt-4">
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 text-center">
                 <h5 class="fm-7">
@@ -246,7 +246,7 @@
         <div class="row-fluid pt-4">
             <h6 class="text-center fm-4">Copyright © Jordy Santamaria 2018</h6>
         </div>
-    </div>
+    </div-->
 
     <!-- Scripts -->
     <script src="{{ asset('js/jquery.min.js') }}"></script>

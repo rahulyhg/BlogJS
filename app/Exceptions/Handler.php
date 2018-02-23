@@ -49,10 +49,29 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        if($exception instanceof NotFoundHttpException)
-        {
-            return response()->view('layouts.error.404', [], 404);
-        }
+
+        /*switch ($exception->getStatusCode()) {
+
+            case 404:
+
+                return redirect('/oops');
+
+                break;
+
+            case 405:
+
+                return redirect()->route('/oops');
+
+                break;
+
+            default:
+
+                return redirect()->route('/oops');
+
+                break;
+
+        }*/
+
         return parent::render($request, $exception);
     }
 }

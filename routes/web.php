@@ -22,7 +22,9 @@ Route::group(['middleware' => ['administrador.redirect']], function () {
 
     /* Rutas de Posts */
     Route::get('/admin/posts', 'AdministradorController@posts');
+
     Route::post('/admin/posts', 'AdministradorController@nuevoPost');
+    Route::get('/admin/administrar-posts', 'AdministradorController@administrarPosts');
     Route::post('/admin/editar-posts', 'AdministradorController@editarPost');
     Route::post('/admin/eliminar-posts', 'AdministradorController@eliminarPost');
 
@@ -55,3 +57,8 @@ Route::get('/sitemap.xml', 'SitemapController@index');
 Route::get('/sitemap/categorias.xml', 'SitemapController@categorias');
 Route::get('/sitemap/series.xml', 'SitemapController@series');
 Route::get('/sitemap/posts.xml', 'SitemapController@posts');
+
+/* Rutas de Error */
+Route::get('/oops', function() {
+    return view('layouts.error.404');
+});
