@@ -25,9 +25,6 @@ class IndexController extends Controller
 
     public function index()
     {
-
-        dd("Funciona");
-
         $this->nuevoAgente();
 
         $metas = [
